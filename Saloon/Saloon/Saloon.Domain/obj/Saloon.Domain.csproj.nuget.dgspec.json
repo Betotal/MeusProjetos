@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj": {}
+    "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj": {}
   },
   "projects": {
-    "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj": {
+    "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj",
+        "projectUniqueName": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj",
         "projectName": "Saloon.Domain",
-        "projectPath": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj",
+        "projectPath": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj",
         "packagesPath": "C:\\Users\\betot\\.nuget\\packages\\",
-        "outputPath": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\obj\\",
+        "outputPath": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\betot\\AppData\\Roaming\\NuGet\\NuGet.Config"

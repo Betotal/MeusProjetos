@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ojbU6lQtWmc=",
+  "dgSpecHash": "ApunMswYIp0=",
   "success": true,
-  "projectFilePath": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Tests\\Saloon.Tests.csproj",
+  "projectFilePath": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Tests\\Saloon.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\betot\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
     "C:\\Users\\betot\\.nuget\\packages\\microsoft.codecoverage\\17.12.0\\microsoft.codecoverage.17.12.0.nupkg.sha512",

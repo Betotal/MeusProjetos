@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "j21G2nD+E6s=",
+  "dgSpecHash": "L63Qccandms=",
   "success": true,
-  "projectFilePath": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Infrastructure\\Saloon.Infrastructure.csproj",
+  "projectFilePath": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Infrastructure\\Saloon.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\betot\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\betot\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

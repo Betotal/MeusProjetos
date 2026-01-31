@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9aL1z64hsew=",
+  "dgSpecHash": "FXNDkxZoTzY=",
   "success": true,
-  "projectFilePath": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Application\\Saloon.Application.csproj",
+  "projectFilePath": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Application\\Saloon.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\betot\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\betot\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

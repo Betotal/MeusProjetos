@@ -1144,11 +1144,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Tests\\Saloon.Tests.csproj",
+      "projectUniqueName": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Tests\\Saloon.Tests.csproj",
       "projectName": "Saloon.Tests",
-      "projectPath": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Tests\\Saloon.Tests.csproj",
+      "projectPath": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Tests\\Saloon.Tests.csproj",
       "packagesPath": "C:\\Users\\betot\\.nuget\\packages\\",
-      "outputPath": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Tests\\obj\\",
+      "outputPath": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\betot\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1163,11 +1163,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Application\\Saloon.Application.csproj": {
-              "projectPath": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Application\\Saloon.Application.csproj"
+            "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Application\\Saloon.Application.csproj": {
+              "projectPath": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Application\\Saloon.Application.csproj"
             },
-            "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj": {
-              "projectPath": "d:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj"
+            "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj": {
+              "projectPath": "D:\\Curso\\MeusProjetos\\Saloon\\Saloon\\Saloon.Domain\\Saloon.Domain.csproj"
             }
           }
         }
