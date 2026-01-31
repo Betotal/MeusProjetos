@@ -1,0 +1,36 @@
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\bin\Debug\net9.0\Saloon.Domain.deps.json
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\bin\Debug\net9.0\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\bin\Debug\net9.0\Saloon.Domain.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.GeneratedMSBuildEditorConfig.editorconfig
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.AssemblyInfoInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.AssemblyInfo.cs
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.csproj.CoreCompileInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.sourcelink.json
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\refint\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\ref\Saloon.Domain.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\bin\Debug\net9.0\Saloon.Domain.deps.json
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\bin\Debug\net9.0\Saloon.Domain.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\bin\Debug\net9.0\Saloon.Domain.pdb
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.GeneratedMSBuildEditorConfig.editorconfig
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.AssemblyInfoInputs.cache
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.AssemblyInfo.cs
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.csproj.CoreCompileInputs.cache
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.sourcelink.json
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\refint\Saloon.Domain.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.pdb
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Domain\obj\Debug\net9.0\ref\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\bin\Debug\net9.0\Saloon.Domain.deps.json
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\bin\Debug\net9.0\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\bin\Debug\net9.0\Saloon.Domain.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.GeneratedMSBuildEditorConfig.editorconfig
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.AssemblyInfoInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.AssemblyInfo.cs
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.csproj.CoreCompileInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.sourcelink.json
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\obj\Debug\net9.0\refint\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\obj\Debug\net9.0\Saloon.Domain.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Domain\obj\Debug\net9.0\ref\Saloon.Domain.dll

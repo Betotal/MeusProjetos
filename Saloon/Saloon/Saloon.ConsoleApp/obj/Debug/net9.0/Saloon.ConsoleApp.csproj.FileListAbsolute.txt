@@ -1,0 +1,256 @@
+D:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.csproj.AssemblyReference.cache
+D:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.AssemblyInfoInputs.cache
+D:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.AssemblyInfo.cs
+D:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.csproj.CoreCompileInputs.cache
+D:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.sourcelink.json
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.exe
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.deps.json
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.runtimeconfig.json
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.pdb
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Azure.Core.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Bcl.Cryptography.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Json.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.ClientModel.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Diagnostics.EventLog.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Memory.Data.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Security.Cryptography.Pkcs.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\cs\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\de\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\es\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\fr\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\it\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\ja\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\ko\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\pl\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\pt-BR\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\ru\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\tr\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\unix\lib\net9.0\Microsoft.Data.SqlClient.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\Microsoft.Data.SqlClient.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Diagnostics.EventLog.Messages.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Diagnostics.EventLog.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.C.ACBD7A12.Up2Date
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\refint\Saloon.ConsoleApp.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.pdb
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.genruntimeconfig.cache
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\ref\Saloon.ConsoleApp.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.csproj.AssemblyReference.cache
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.AssemblyInfoInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.AssemblyInfo.cs
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.csproj.CoreCompileInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.sourcelink.json
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\refint\Saloon.ConsoleApp.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.exe
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.deps.json
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.runtimeconfig.json
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Azure.Core.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Bcl.Cryptography.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Json.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.ClientModel.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Diagnostics.EventLog.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Memory.Data.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Security.Cryptography.Pkcs.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\cs\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\de\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\es\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\fr\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\it\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\ja\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\ko\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\pl\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\pt-BR\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\ru\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\tr\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\unix\lib\net9.0\Microsoft.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\Microsoft.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Diagnostics.EventLog.Messages.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Diagnostics.EventLog.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.C.ACBD7A12.Up2Date
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.genruntimeconfig.cache
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\ref\Saloon.ConsoleApp.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Azure.Identity.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Domain.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Domain.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Azure.Identity.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Domain.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-arm64\native\sni.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x64\native\sni.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x86\native\sni.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Application.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Infrastructure.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Infrastructure.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Application.pdb
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Data.SqlClient.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-arm64\native\sni.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x64\native\sni.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x86\native\sni.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Application.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Infrastructure.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Infrastructure.pdb
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Application.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Curso\MeusProjetos\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\appsettings.json
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.exe
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\appsettings.json
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.deps.json
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.runtimeconfig.json
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.ConsoleApp.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Azure.Core.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Azure.Identity.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Bcl.Cryptography.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Json.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.ClientModel.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Diagnostics.EventLog.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Memory.Data.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Security.Cryptography.Pkcs.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\cs\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\de\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\es\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\fr\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\it\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\ja\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\ko\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\pl\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\pt-BR\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\ru\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\tr\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\unix\lib\net9.0\Microsoft.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\Microsoft.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-arm64\native\sni.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x64\native\sni.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win-x86\native\sni.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Diagnostics.EventLog.Messages.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Diagnostics.EventLog.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Application.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Infrastructure.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Domain.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Infrastructure.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\bin\Debug\net9.0\Saloon.Application.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.csproj.AssemblyReference.cache
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.AssemblyInfoInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.AssemblyInfo.cs
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.csproj.CoreCompileInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.sourcelink.json
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.C.ACBD7A12.Up2Date
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\refint\Saloon.ConsoleApp.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\Saloon.ConsoleApp.genruntimeconfig.cache
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.ConsoleApp\obj\Debug\net9.0\ref\Saloon.ConsoleApp.dll

@@ -1,0 +1,170 @@
+@startuml Saloon 
+    Enum StatusUsuario{
+        #Ativo 
+        #Inativo
+    }
+
+    Enum StatusAgendamento{
+        #Realizado
+        #Agendado 
+        #Livre
+    }
+
+    Enum PromoAbatimento{
+        #Salao
+        #Profissional 
+        #Ambos
+    }
+
+    Enum DiasSemana{
+        #Segunda
+        #Terça 
+        #Quarta
+        #Quinta
+        #Sexta 
+        #Sabado
+    }
+
+    class Usuario{
+        -Integer ID 
+        -String Login 
+        -String Senha
+        -Enum Status
+    }
+    Usuario <-- StatusUsuario
+
+    class Cliente {
+        -Integer ID
+        -Integer IdUsuario
+        -String Nome 
+        -Integer Telefone
+        -Date Aniversario
+    }
+
+    class Observacao {
+        -Integer ID
+        -Integer IdCliente
+        -String Observacao
+
+        +void CarregaObservascaoPorCliente()
+    }
+    Cliente <-- Observacao
+    Usuario --> Cliente
+
+    class Profissional{
+        -Integer ID
+        -Integer IdUsuario
+        -Integer IdCliente
+        -float SalarioFixo
+        -Integer PorcentagemComissao
+    }
+
+    class ProfissionalServico{
+        -Integer IdProfissional
+        -Integer IdServico
+    }
+
+    class Servico{
+        -Integer ID 
+        -String Nome
+        -Time TempoExecucao
+        -float PrecoInicial
+    }
+
+    Profissional <-- ProfissionalServico
+    Servico      <-- ProfissionalServico
+
+    class HorarioTrabalho{
+        -Integer ID
+        -Time HorarioInicial
+        -Time HorarioFinal
+    }
+
+    class ProfissionalHorarioTrabalho{
+        -Integer IdProfissional
+        -Integer IdHorarioTrabalho
+    }
+
+    Profissional    <-- ProfissionalHorarioTrabalho
+    HorarioTrabalho <-- ProfissionalHorarioTrabalho
+
+    Usuario --> Profissional
+    Cliente o-- Profissional
+
+    class Promocao{
+        -Integer ID
+        -String Nome
+        -Date DataInicio
+        -Date Datafim
+        -Interger IdServico
+        -Integer QuantidadeServico
+        -float ValorDesconto
+        -Enum DiaValidoInicial 
+        -Enum DiaValidoFinal 
+        -Enum PromoAbatimento     
+    }
+
+    class PromocaoCliente{
+        -Integer ID
+        -Integer IdCliente
+        -Integer IdPromocao
+        -Integer PromoQtde
+
+        + void ExibePromocaoCliente()
+    }
+
+    PromoAbatimento --> Promocao
+    DiasSemana      --> Promocao
+
+    PromocaoCliente <-- Cliente
+    PromocaoCliente <-- Promocao
+
+    class Agenda{
+        -Integer ID
+        -Date Data
+        -Time Horario
+        -Integer IdProfissional
+        -Integer IdCliente
+        -Integer IdServico
+        -Enum Agendamento
+        -Boolean Promocao
+
+        +Boolean: ApagarDB()
+        +Void CarregarAgendaData()
+        +Void CarregarAgendaCliente()
+        +void CarregarAgendaProfissional()
+        +Void CarregarAgendaServicoCliente()
+        +Void CarregarAgendaServicoProfissional()
+    }
+
+    Profissional      --> Agenda
+    Cliente           --> Agenda
+    StatusAgendamento --> Agenda 
+    Promocao          --> Agenda
+
+    Interface BancoDeDados{
+        +Boolean: GravarDB()
+        +Boolean: AtualizarDB()
+        +Void Carregar()
+    }
+
+    Usuario                     ..|> BancoDeDados
+    Cliente                     ..|> BancoDeDados
+    Profissional                ..|> BancoDeDados
+    Servico                     ..|> BancoDeDados
+    Promocao                    ..|> BancoDeDados
+    ProfissionalServico         ..|> BancoDeDados
+    HorarioTrabalho             ..|> BancoDeDados
+    ProfissionalHorarioTrabalho ..|> BancoDeDados
+    Agenda                      ..|> BancoDeDados  
+    AgendaRealizado             ..|> BancoDeDados  
+    Observacao                  ..|> BancoDeDados
+
+    class AgendaRealizado{
+        -Integer IdAgenda
+        -float ValorInicial
+    }
+    AgendaRealizado <-- Agenda
+
+
+@enduml

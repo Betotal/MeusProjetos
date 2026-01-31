@@ -1,0 +1,48 @@
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Infrastructure.deps.json
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Infrastructure.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Infrastructure.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Domain.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.csproj.AssemblyReference.cache
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.AssemblyInfoInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.AssemblyInfo.cs
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.csproj.CoreCompileInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.sourcelink.json
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.I.EF9153F8.Up2Date
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\refint\Saloon.Infrastructure.dll
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\ref\Saloon.Infrastructure.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Infrastructure.deps.json
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Infrastructure.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Infrastructure.pdb
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Domain.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Domain.pdb
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.csproj.AssemblyReference.cache
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.AssemblyInfoInputs.cache
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.AssemblyInfo.cs
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.csproj.CoreCompileInputs.cache
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.sourcelink.json
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.I.EF9153F8.Up2Date
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\refint\Saloon.Infrastructure.dll
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.pdb
+d:\Meus Documentos\Cursos\CSharp\MeusProjetos\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\ref\Saloon.Infrastructure.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Infrastructure.deps.json
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Infrastructure.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Infrastructure.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Domain.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\bin\Debug\net9.0\Saloon.Domain.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.csproj.AssemblyReference.cache
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.AssemblyInfoInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.AssemblyInfo.cs
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.csproj.CoreCompileInputs.cache
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.sourcelink.json
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.I.EF9153F8.Up2Date
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\refint\Saloon.Infrastructure.dll
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\Saloon.Infrastructure.pdb
+d:\Curso\MeusProjetos\Saloon\Saloon\Saloon.Infrastructure\obj\Debug\net9.0\ref\Saloon.Infrastructure.dll
