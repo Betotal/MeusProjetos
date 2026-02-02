@@ -1,0 +1,208 @@
+{
+  "format": 1,
+  "restore": {
+    "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Infrastructure\\ERPModular.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Core\\ERPModular.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Core\\ERPModular.Core.csproj",
+        "projectName": "ERPModular.Core",
+        "projectPath": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Core\\ERPModular.Core.csproj",
+        "packagesPath": "C:\\Users\\betot\\.nuget\\packages\\",
+        "outputPath": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\betot\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Shared\\ERPModular.Shared.csproj": {
+                "projectPath": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Shared\\ERPModular.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Infrastructure\\ERPModular.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Infrastructure\\ERPModular.Infrastructure.csproj",
+        "projectName": "ERPModular.Infrastructure",
+        "projectPath": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Infrastructure\\ERPModular.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\betot\\.nuget\\packages\\",
+        "outputPath": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\betot\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Core\\ERPModular.Core.csproj": {
+                "projectPath": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Core\\ERPModular.Core.csproj"
+              },
+              "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Shared\\ERPModular.Shared.csproj": {
+                "projectPath": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Shared\\ERPModular.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Shared\\ERPModular.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Shared\\ERPModular.Shared.csproj",
+        "projectName": "ERPModular.Shared",
+        "projectPath": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Shared\\ERPModular.Shared.csproj",
+        "packagesPath": "C:\\Users\\betot\\.nuget\\packages\\",
+        "outputPath": "d:\\Curso\\MeusProjetos\\Estoque\\ERPModular.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\betot\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

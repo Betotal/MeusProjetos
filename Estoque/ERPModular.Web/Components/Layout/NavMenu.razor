@@ -1,0 +1,41 @@
+﻿<MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
+
+@if (_modules != null)
+{
+    @foreach (var module in _modules)
+    {
+        @if (module.Name == "Estoque")
+        {
+            <MudNavGroup Title="Estoque" Icon="@Icons.Material.Filled.Inventory" Expanded="false">
+                <MudNavLink Href="/inventory/products" Icon="@Icons.Material.Filled.Category">Produtos</MudNavLink>
+                <MudNavLink Href="/inventory/movements" Icon="@Icons.Material.Filled.SwapVert">Movimentações</MudNavLink>
+            </MudNavGroup>
+        }
+        else if (module.Name == "Compras")
+        {
+            <MudNavGroup Title="Compras" Icon="@Icons.Material.Filled.ShoppingCart" Expanded="false">
+                <MudNavLink Href="/purchases/orders" Icon="@Icons.Material.Filled.ListAlt">Pedidos</MudNavLink>
+                <MudNavLink Href="/purchases/suppliers" Icon="@Icons.Material.Filled.People">Fornecedores</MudNavLink>
+            </MudNavGroup>
+        }
+    }
+}
+
+<MudNavGroup Title="Configurações" Icon="@Icons.Material.Filled.Settings" Expanded="false">
+    <MudNavLink Href="/settings/users" Icon="@Icons.Material.Filled.People">Usuários</MudNavLink>
+    <MudNavLink Href="/settings/tenant" Icon="@Icons.Material.Filled.Business">Empresa</MudNavLink>
+</MudNavGroup>
+
+@using ERPModular.Core.Interfaces
+@using ERPModular.Core.Entities
+@inject IUnitOfWork _uow
+
+@code {
+    private IEnumerable<Module>? _modules;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _modules = await _uow.Repository<Module>().GetAllAsync();
+    }
+}
+

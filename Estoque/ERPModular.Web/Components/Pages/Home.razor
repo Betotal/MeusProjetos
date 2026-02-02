@@ -1,0 +1,86 @@
+﻿@page "/"
+
+<PageTitle>Dashboard - ERPModular</PageTitle>
+
+<MudText Typo="Typo.h3" Class="mb-4">Bem-vindo ao ERPModular</MudText>
+
+<MudGrid>
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 140px; border-left: 6px solid #3f51b5;">
+            <MudText Typo="Typo.subtitle1" Color="Color.Primary">Estoque Total</MudText>
+            <MudText Typo="Typo.h3">1,250</MudText>
+            <MudText Typo="Typo.caption">Total de insumos e manufaturados</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 140px; border-left: 6px solid #f44336;">
+            <MudText Typo="Typo.subtitle1" Color="Color.Error">Alertas de Estoque</MudText>
+            <MudText Typo="Typo.h3">12</MudText>
+            <MudText Typo="Typo.caption">Itens abaixo do nível mínimo</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 140px; border-left: 6px solid #4caf50;">
+            <MudText Typo="Typo.subtitle1" Color="Color.Success">Vendas Mensais</MudText>
+            <MudText Typo="Typo.h3">R$ 45k</MudText>
+            <MudText Typo="Typo.caption">Crescimento de 15% este mês</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 140px; border-left: 6px solid #ff9800;">
+            <MudText Typo="Typo.subtitle1" Color="Color.Warning">Compras Pendentes</MudText>
+            <MudText Typo="Typo.h3">08</MudText>
+            <MudText Typo="Typo.caption">Aguardando aprovação</MudText>
+        </MudPaper>
+    </MudItem>
+
+    <MudItem xs="12" md="8">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 400px;">
+            <MudText Typo="Typo.h6" Class="mb-2">Visão Geral de Operações</MudText>
+            <MudChart ChartType="ChartType.Bar" ChartSeries="@_series" XAxisLabels="@_xAxisLabels" Width="100%" Height="250px" />
+        </MudPaper>
+    </MudItem>
+
+    <MudItem xs="12" md="4">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 400px;">
+            <MudText Typo="Typo.h6" Class="mb-4">Seus Módulos Ativos</MudText>
+            <MudList T="string">
+                @if (_modules == null)
+                {
+                    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7" />
+                }
+                else if (!_modules.Any())
+                {
+                    <MudAlert Severity="Severity.Warning">Nenhum módulo contratado.</MudAlert>
+                }
+                else
+                {
+                    @foreach (var module in _modules)
+                    {
+                        <MudListItem Icon="@module.Icon" Text="@module.Name" />
+                    }
+                }
+            </MudList>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+@using ERPModular.Core.Interfaces
+@using ERPModular.Core.Entities
+@inject IUnitOfWork _uow
+
+@code {
+    private IEnumerable<Module>? _modules;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // No COBOL, seria como dar um START/READ no arquivo de módulos da empresa
+        _modules = await _uow.Repository<Module>().GetAllAsync();
+    }
+
+    private List<ChartSeries> _series = new List<ChartSeries>()
+    {
+        new ChartSeries() { Name = "Operações", Data = new double[] { 40, 20, 25, 27, 46, 60, 48, 80 } }
+    };
+    private string[] _xAxisLabels = { "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago" };
+}

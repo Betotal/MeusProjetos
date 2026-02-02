@@ -1,0 +1,86 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        
+        @if (_tenant == null)
+        {
+            <MudText Typo="Typo.h5" Class="ml-3">ERPModular</MudText>
+        }
+        else
+        {
+            <div class="d-flex flex-column ml-3">
+                <MudText Typo="Typo.h6" Style="font-weight: 800; line-height: 1.1; color: var(--mud-palette-primary-lighten);">@_tenant.Name</MudText>
+                <MudText Typo="Typo.caption" Style="opacity: 0.7;">ERPModular - Painel Corporativo</MudText>
+            </div>
+        }
+
+        <MudSpacer />
+        
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <div class="d-flex flex-column align-end mr-4">
+                <MudText Typo="Typo.body2" Style="font-weight: 600;">Administrador</MudText>
+                <MudText Typo="Typo.caption" Style="opacity: 0.7;">suporte@betotal.com.br</MudText>
+            </div>
+        </MudHidden>
+
+        <MudToggleIconButton @bind-Toggled="@_isDarkMode"
+                             Icon="@Icons.Material.Filled.DarkMode" Color="@Color.Inherit"
+                             ToggledIcon="@Icons.Material.Filled.LightMode" ToggledColor="@Color.Inherit" title="Alternar Tema" />
+        <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Inherit" />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <MudNavMenu>
+            <NavMenu />
+        </MudNavMenu>
+    </MudDrawer>
+    <MudMainContent Class="pa-4">
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@using ERPModular.Core.Interfaces
+@using ERPModular.Core.Entities
+@inject IUnitOfWork _uow
+@inject ITenantProvider _tenantProvider
+
+@code {
+    bool _drawerOpen = true;
+    bool _isDarkMode = true;
+    private Tenant? _tenant;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // No COBOL, seria como ler o registro da Empresa logada no arquivo de configuração
+        var tenantId = _tenantProvider.GetTenantId();
+        _tenant = await _uow.Repository<Tenant>().GetByIdAsync(tenantId);
+    }
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    private MudTheme _theme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = "#3f51b5",
+            AppbarBackground = "#3f51b5",
+        },
+        PaletteDark = new PaletteDark()
+        {
+            Primary = "#7986cb",
+            Background = "#1a1a27",
+            AppbarBackground = "#1a1a27",
+            DrawerBackground = "#1a1a27",
+            Surface = "#1e1e2d",
+        }
+    };
+}
