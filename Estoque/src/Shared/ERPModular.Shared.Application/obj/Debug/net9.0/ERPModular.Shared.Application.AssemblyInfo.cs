@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ERPModular.Shared.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c065c4dee8eff4c60513bcfbaf83fa6de9e81a8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c62c5d7df918d109787d9e62dcb19c89eb8d8b98")]
 [assembly: System.Reflection.AssemblyProductAttribute("ERPModular.Shared.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ERPModular.Shared.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

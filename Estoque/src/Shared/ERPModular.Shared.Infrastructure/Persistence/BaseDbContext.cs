@@ -23,6 +23,11 @@ public abstract class BaseDbContext : DbContext
         _tenantInterceptor = tenantInterceptor;
     }
 
+    /// <summary>
+    /// Propriedade utilizada pelo Global Query Filter para obter o TenantId atual.
+    /// </summary>
+    protected string CurrentTenantId => ContextAccessor.GetContext().TenantId;
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // Adiciona o interceptor de auditoria e tenant
@@ -43,22 +48,24 @@ public abstract class BaseDbContext : DbContext
         }
 
         // 2. FILTROS GLOBAIS (QUERY FILTERS)
-        // Aplica automaticamente "WHERE TenantId = X" em todas as consultas de BaseEntity
+        // Aplica automaticamente "WHERE TenantId = CurrentTenantId" em todas as consultas de BaseEntity
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
             {
-                var parameter = Expression.Parameter(entityType.ClrType, "e");
-                var body = Expression.Equal(
-                    Expression.Property(parameter, nameof(BaseEntity.TenantId)),
-                    Expression.Constant(context.TenantId)
-                );
-                
-                var lambda = Expression.Lambda(body, parameter);
-                modelBuilder.Entity(entityType.ClrType).HasQueryFilter(lambda);
+                var method = typeof(BaseDbContext)
+                    .GetMethod(nameof(SetGlobalQueryFilter), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                    ?.MakeGenericMethod(entityType.ClrType);
+
+                method?.Invoke(this, new object[] { modelBuilder });
             }
         }
 
         base.OnModelCreating(modelBuilder);
+    }
+
+    private void SetGlobalQueryFilter<TEntity>(ModelBuilder modelBuilder) where TEntity : BaseEntity
+    {
+        modelBuilder.Entity<TEntity>().HasQueryFilter(e => e.TenantId == CurrentTenantId);
     }
 }

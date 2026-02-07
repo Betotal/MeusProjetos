@@ -1,0 +1,21 @@
+@page "/Account/LicenseExpired"
+@layout ERPModular.Web.Components.Layout.MainLayout
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <div class="card border-danger shadow">
+                <div class="card-body py-5">
+                    <i class="fas fa-exclamation-triangle text-danger mb-4" style="font-size: 4rem;"></i>
+                    <h1 class="text-danger">Acesso Bloqueado</h1>
+                    <p class="lead">Sua licença para este módulo expirou ou está inativa.</p>
+                    <hr />
+                    <p>Por favor, entre em contato com o suporte ou realize a renovação da sua assinatura para continuar utilizando o ERPModular.</p>
+                    <div class="mt-4">
+                        <a href="/Account/Logout" class="btn btn-outline-danger btn-lg">Sair do Sistema</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

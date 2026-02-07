@@ -10,3 +10,4 @@ D:\Curso\MeusProjetos\Estoque\src\Shared\ERPModular.Shared.Domain\obj\Debug\net9
 D:\Curso\MeusProjetos\Estoque\src\Shared\ERPModular.Shared.Domain\obj\Debug\net9.0\refint\ERPModular.Shared.Domain.dll
 D:\Curso\MeusProjetos\Estoque\src\Shared\ERPModular.Shared.Domain\obj\Debug\net9.0\ERPModular.Shared.Domain.pdb
 D:\Curso\MeusProjetos\Estoque\src\Shared\ERPModular.Shared.Domain\obj\Debug\net9.0\ref\ERPModular.Shared.Domain.dll
+D:\Curso\MeusProjetos\Estoque\src\Shared\ERPModular.Shared.Domain\obj\Debug\net9.0\ERPModular.Shared.Domain.csproj.AssemblyReference.cache
