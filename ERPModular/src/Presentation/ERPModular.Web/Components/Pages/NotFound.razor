@@ -1,0 +1,33 @@
+@page "/404"
+@inject NavigationManager Navigation
+
+<PageTitle>Página não encontrada</PageTitle>
+
+<div class="error-container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="text-center">
+        <div class="icon-container mb-4">
+            <i class="fas fa-compass text-warning display-1" style="opacity: 0.5;"></i>
+        </div>
+        <h1 class="display-4 fw-bold text-white mb-3">404</h1>
+        <h2 class="h4 text-light mb-4">Página não encontrada</h2>
+        <p class="lead text-muted mb-5">
+            O recurso que você está procurando não existe ou foi movido.
+        </p>
+        
+        <div class="d-flex gap-3 justify-content-center">
+            <button class="btn btn-outline-light px-4" @onclick="GoBack">
+                <i class="fas fa-arrow-left me-2"></i>Voltar
+            </button>
+            <a href="/" class="btn btn-primary px-4">
+                <i class="fas fa-home me-2"></i>Ir para Início
+            </a>
+        </div>
+    </div>
+</div>
+
+@code {
+    private void GoBack()
+    {
+        Navigation.NavigateTo("/");
+    }
+}

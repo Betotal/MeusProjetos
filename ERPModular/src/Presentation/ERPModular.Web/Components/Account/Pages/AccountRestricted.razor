@@ -1,0 +1,76 @@
+@page "/Account/Restricted"
+@using ERPModular.Shared.Infrastructure.Persistence
+@using ERPModular.Shared.Domain.Models
+@using ERPModular.Shared.Infrastructure.Extensions
+@using Microsoft.EntityFrameworkCore
+@layout ERPModular.Web.Components.Layout.MainLayout
+@inject SharedDbContext DbContext
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager Navigation
+
+<div class="restricted-container d-flex align-items-center justify-content-center vh-100">
+    <div class="card p-5 shadow-lg border-0 bg-dark text-white rounded-4 text-center" style="max-width: 500px;">
+        <div class="mb-4">
+            <div class="lock-icon mx-auto mb-3">
+                <i class="fas @(Reason == "user_blocked" ? "fa-user-slash" : "fa-shield-alt")"></i>
+            </div>
+            @if (tenant != null)
+            {
+                <h2 class="fw-bold mb-1">@tenant.NomeFantasia</h2>
+            }
+            <h4 class="text-accent mb-4">@(Reason == "user_blocked" ? "Conta Suspensa" : "Acesso Restrito")</h4>
+        </div>
+        
+        <p class="text-muted lead mb-5">
+            @if (Reason == "user_blocked")
+            {
+                <span>Sua conta individual foi desativada temporariamente. Por favor, entre em contato com o administrador da sua empresa para mais informações.</span>
+            }
+            else
+            {
+                <span>Sua conta possui restrições de acesso devido ao status da licença da empresa.</span>
+            }
+        </p>
+
+        <div class="d-grid">
+            <a href="/Account/Logout" class="btn btn-outline-light p-3 fw-bold border-opacity-25">
+                <i class="fas fa-sign-out-alt me-2"></i>Sair do Sistema
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .restricted-container { background: #0f172a; }
+    .text-accent { color: #38bdf8; }
+    .lock-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+    }
+</style>
+
+@code {
+    [SupplyParameterFromQuery]
+    public string? Reason { get; set; }
+
+    private Tenant? tenant;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        var tenantId = user.GetTenantId();
+
+        if (!string.IsNullOrEmpty(tenantId))
+        {
+            tenant = await DbContext.Tenants.FirstOrDefaultAsync(t => t.Id == tenantId);
+        }
+    }
+}

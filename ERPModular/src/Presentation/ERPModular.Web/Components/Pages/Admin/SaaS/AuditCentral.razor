@@ -1,0 +1,162 @@
+@page "/Admin/SaaS/Audit"
+@rendermode InteractiveServer
+@using ERPModular.Shared.Domain.Models
+
+@using ERPModular.Shared.Infrastructure.Persistence
+@using Microsoft.EntityFrameworkCore
+@attribute [Authorize(Roles = "SuperAdmin")]
+@inject SharedDbContext DbContext
+@inject NavigationManager Navigation
+
+<PageTitle>Central de Auditoria - ERPModular</PageTitle>
+
+<div class="container-fluid pt-2 pb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h2 class="text-white fw-bold mb-1">Central de Auditoria</h2>
+            <p class="text-white-50 mb-0">Rastreabilidade total de ações administrativas</p>
+        </div>
+    </div>
+
+    <div class="card bg-dark border-secondary rounded-4 shadow-lg overflow-hidden">
+        <div class="card-header bg-dark border-secondary p-4">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label class="text-white-50 small mb-1">Filtrar por Tenant</label>
+                    <input type="text" @bind="filterTenant" @bind:event="oninput" 
+                           class="form-control bg-dark border-secondary text-white" 
+                           placeholder="ID do Tenant..." />
+                </div>
+                <div class="col-md-3">
+                    <label class="text-white-50 small mb-1">Ação</label>
+                    <input type="text" @bind="filterAction" @bind:event="oninput" 
+                           class="form-control bg-dark border-secondary text-white" 
+                           placeholder="Tipo de ação..." />
+                </div>
+                <div class="col-md-3">
+                    <label class="text-white-50 small mb-1">Usuário (Admin)</label>
+                    <input type="text" @bind="filterUser" @bind:event="oninput" 
+                           class="form-control bg-dark border-secondary text-white" 
+                           placeholder="Nome ou ID..." />
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button class="btn btn-outline-secondary w-100" @onclick="ClearFilters">
+                        Limpar Filtros
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-dark table-hover mb-0 align-middle">
+                    <thead class="table-dark-header border-secondary text-white-50 small">
+                        <tr>
+                            <th class="ps-4">DATA/HORA</th>
+                            <th>AÇÃO</th>
+                            <th>ADMINISTRADOR</th>
+                            <th>TENANT ALVO</th>
+                            <th>DETALHES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (auditLogs == null)
+                        {
+                            <tr><td colspan="5" class="text-center py-5"><div class="spinner-border text-accent" role="status"></div></td></tr>
+                        }
+                        else if (!filteredLogs.Any())
+                        {
+                            <tr><td colspan="5" class="text-center py-5 text-white-50">Nenhum log encontrado.</td></tr>
+                        }
+                        else
+                        {
+                            @foreach (var log in filteredLogs)
+                            {
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="text-white">@log.DataHora.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</div>
+                                        <small class="text-white-50 extra-small">IP: @(log.IpAddress ?? "N/A")</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge @GetActionClass(log.Acao)">@log.Acao</span>
+                                    </td>
+                                    <td>
+                                        <div class="text-white">@log.UsuarioNome</div>
+                                        <small class="text-white-50 extra-small">ID: @log.UsuarioId.Substring(0,8)</small>
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(log.TenantId))
+                                        {
+                                            <span class="badge bg-secondary">@log.TenantId</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-white-50 small">-</span>
+                                        }
+                                    </td>
+                                    <td class="small text-white-50" style="max-width: 300px;">
+                                        @log.Detalhes
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-accent { color: #38bdf8 !important; }
+    .table-dark-header { background: rgba(0,0,0,0.2) !important; }
+    .extra-small { font-size: 0.7rem; }
+    .table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .table tbody tr:hover { background: rgba(255,255,255,0.02) !important; }
+</style>
+
+@code {
+    private List<AdminAuditLog>? auditLogs;
+    private string filterTenant = "";
+    private string filterAction = "";
+    private string filterUser = "";
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? tenantId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(tenantId))
+        {
+            filterTenant = tenantId;
+        }
+
+        auditLogs = await DbContext.AdminAuditLogs
+            .AsNoTracking()
+            .OrderByDescending(l => l.DataHora)
+            .Take(500) // Limite de visualização por performance
+            .ToListAsync();
+    }
+
+    private IEnumerable<AdminAuditLog> filteredLogs => auditLogs?
+        .Where(l => (string.IsNullOrEmpty(filterTenant) || l.TenantId?.Contains(filterTenant, StringComparison.OrdinalIgnoreCase) == true) &&
+                    (string.IsNullOrEmpty(filterAction) || l.Acao.Contains(filterAction, StringComparison.OrdinalIgnoreCase)) &&
+                    (string.IsNullOrEmpty(filterUser) || l.UsuarioNome.Contains(filterUser, StringComparison.OrdinalIgnoreCase) || l.UsuarioId.Contains(filterUser, StringComparison.OrdinalIgnoreCase)))
+        ?? Enumerable.Empty<AdminAuditLog>();
+
+    private void ClearFilters()
+    {
+        filterTenant = "";
+        filterAction = "";
+        filterUser = "";
+        tenantId = null;
+    }
+
+    private string GetActionClass(string action) => action switch
+    {
+        var a when a.Contains("Bloqueio") || a.Contains("Cancel") || a.Contains("Suspen") => "bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25",
+        var a when a.Contains("Ativa") || a.Contains("Provision") || a.Contains("Liber") => "bg-success bg-opacity-10 text-success border border-success border-opacity-25",
+        var a when a.Contains("Edição") || a.Contains("Altera") => "bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25",
+        _ => "bg-info bg-opacity-10 text-info border border-info border-opacity-25"
+    };
+}

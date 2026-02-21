@@ -1,0 +1,258 @@
+@page "/Confecao/Produtos"
+@rendermode InteractiveServer
+@using ERPModular.Confecao.Domain.Entities
+@using ERPModular.Confecao.Infrastructure.Persistence
+@using ERPModular.Shared.Domain.Interfaces
+@using Microsoft.EntityFrameworkCore
+@inject IDbContextFactory<ConfecaoDbContext> DbFactory
+@inject IExecutionContextAccessor ExecutionContextAccessor
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager Navigation
+@inject ERPModular.Web.Services.SaaSControlService SaaSControl
+
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-white fw-bold"><i class="fas fa-boxes-stacked me-2 text-accent"></i>Produtos (Confecção)</h2>
+        <button class="btn btn-accent shadow-sm" @onclick="ShowAddForm" disabled="@IsReadOnly">
+            <i class="fas fa-plus me-1"></i> Novo Produto
+        </button>
+
+    </div>
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show mb-4 rounded-3" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i> @errorMessage
+            <button type="button" class="btn-close" @onclick='() => errorMessage = ""'></button>
+        </div>
+    }
+
+    @if (showForm)
+    {
+        <div class="card bg-dark border-secondary mb-4 shadow-lg rounded-4 overflow-hidden animate__animated animate__fadeInDown">
+            <div class="card-header bg-accent text-dark fw-bold">
+                @(editingProduct.Id == Guid.Empty ? "Cadastrar Novo Produto" : "Editar Produto")
+                @if (IsReadOnly) { <span class="badge bg-danger ms-2">SOMENTE LEITURA</span> }
+            </div>
+
+            <div class="card-body p-4">
+                <EditForm Model="editingProduct" OnValidSubmit="HandleSave">
+                    <DataAnnotationsValidator />
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="text-white-50 small mb-1">Nome do Produto</label>
+                            <InputText @bind-Value="editingProduct.Nome" class="form-control bg-dark text-white border-secondary" placeholder="Ex: Camiseta Básica Masculina" />
+                            <ValidationMessage For="@(() => editingProduct.Nome)" class="text-danger small" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="text-white-50 small mb-1">Referência</label>
+                            <InputText @bind-Value="editingProduct.Referencia" class="form-control bg-dark text-white border-secondary" placeholder="Ex: REF-001" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="text-white-50 small mb-1">Preço (R$)</label>
+                            <InputNumber @bind-Value="editingProduct.Preco" class="form-control bg-dark text-white border-secondary" />
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-4 gap-2">
+                        <button type="button" class="btn btn-outline-secondary" @onclick="CancelForm">Cancelar</button>
+                        <button type="submit" class="btn btn-accent px-4 fw-bold" disabled="@IsReadOnly">Salvar</button>
+
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    }
+
+    <div class="card bg-dark border-secondary shadow rounded-4 overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover mb-0">
+                <thead class="bg-secondary bg-opacity-10 text-white-50 small text-uppercase">
+                    <tr>
+                        <th class="ps-4">Produto</th>
+                        <th>Referência</th>
+                        <th>Preço</th>
+                        <th class="text-end pe-4">Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="border-top-0">
+                    @if (produtos == null)
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center py-5">
+                                <div class="spinner-border text-accent" role="status"></div>
+                            </td>
+                        </tr>
+                    }
+                    else if (!produtos.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center py-5 text-white-50 italic">
+                                <i class="fas fa-info-circle me-1"></i> Nenhum produto cadastrado para este Tenant.
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var p in produtos)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="fw-bold">@p.Nome</div>
+                                    <small class="text-white-50">Criado em: @p.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</small>
+                                </td>
+                                <td><span class="badge bg-secondary">@p.Referencia</span></td>
+                                <td class="text-accent fw-bold">R$ @p.Preco.ToString("N2")</td>
+                                <td class="text-end pe-4">
+                                    <button class="btn btn-sm btn-outline-light border-0" title="Editar" @onclick="() => EditProduct(p)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-accent { color: #38bdf8 !important; }
+    .btn-accent { background: #38bdf8; color: #0f172a; border: none; font-weight: 600; }
+    .btn-accent:hover { background: #0ea5e9; color: #fff; }
+    .bg-accent { background-color: #38bdf8 !important; }
+    .card { transition: all 0.3s ease; }
+    .table-hover tbody tr:hover { background-color: rgba(56, 189, 248, 0.05); }
+</style>
+
+@code {
+    private List<Produto>? produtos;
+    private bool showForm = false;
+    private Produto editingProduct = new();
+    private string errorMessage = "";
+    private bool IsReadOnly = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var execContext = ExecutionContextAccessor.GetContext();
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        
+        // Validação de Segurança: Se não for do domínio 'confecao', bloqueia acesso.
+        // SuperAdmin tem acesso irrestrito para gestão.
+        if (execContext.DomainId != "confecao" && !user.IsInRole("SuperAdmin"))
+        {
+            Navigation.NavigateTo("/Account/AccessDenied?reason=wrong_domain");
+            return;
+        }
+
+        var tenantId = user.GetTenantId();
+        var domainId = user.GetDomainId();
+        if (!string.IsNullOrEmpty(tenantId) && !string.IsNullOrEmpty(domainId))
+        {
+            var (status, _, _) = await SaaSControl.GetLicenseStatusAsync(tenantId, domainId);
+            IsReadOnly = (status == ERPModular.Web.Services.LicenseStatus.ReadOnly);
+        }
+
+
+        await LoadProdutos();
+    }
+
+    private async Task LoadProdutos()
+    {
+        try
+        {
+            using var context = await DbFactory.CreateDbContextAsync();
+            produtos = await context.Produtos.OrderByDescending(p => p.CreatedAt).ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao carregar produtos: {ex.Message}");
+            produtos = new();
+        }
+    }
+
+    private void ShowAddForm()
+    {
+        editingProduct = new Produto(); // BaseEntity já gera Guid.NewGuid() automaticamente
+        showForm = true;
+    }
+
+    private void EditProduct(Produto p)
+    {
+        editingProduct = new Produto 
+        { 
+            Id = p.Id, 
+            Nome = p.Nome, 
+            Referencia = p.Referencia, 
+            Preco = p.Preco 
+        };
+        showForm = true;
+    }
+
+    private async Task HandleSave()
+    {
+        errorMessage = "";
+        try
+        {
+            if (IsReadOnly)
+            {
+                errorMessage = "Erro: licenciamento expirado. Acesso restrito a consulta.";
+                return;
+            }
+
+            // Diagnóstico: verificar contexto de execução
+            var execContext = ExecutionContextAccessor.GetContext();
+            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            
+            Console.WriteLine($"[PRODUTO] DomainId='{execContext.DomainId}' TenantId='{execContext.TenantId}' EmpresaId='{execContext.EmpresaId}'");
+
+            if (execContext.DomainId != "confecao" && !user.IsInRole("SuperAdmin"))
+            {
+                errorMessage = "Erro: Você não tem permissão para gravar dados neste domínio.";
+                return;
+            }
+
+            if (string.IsNullOrEmpty(execContext.TenantId))
+            {
+                errorMessage = "Erro: contexto do usuário inválido (TenantId vazio). Faça logout e login novamente.";
+                return;
+            }
+
+            using var context = await DbFactory.CreateDbContextAsync();
+
+            // Verifica se é novo (Id não foi ainda persistido) ou edição
+            var existente = await context.Produtos
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(p => p.Id == editingProduct.Id);
+
+            if (existente == null)
+            {
+                // NOVO PRODUTO — Id já foi gerado pelo BaseEntity
+                context.Produtos.Add(editingProduct);
+            }
+            else
+            {
+                // EDIÇÃO
+                existente.Nome = editingProduct.Nome;
+                existente.Referencia = editingProduct.Referencia;
+                existente.Preco = editingProduct.Preco;
+                context.Produtos.Update(existente);
+            }
+
+            await context.SaveChangesAsync();
+            showForm = false;
+            await LoadProdutos();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Erro ao salvar produto: {ex.InnerException?.Message ?? ex.Message}";
+            Console.WriteLine($"ERRO AO SALVAR PRODUTO: {ex}");
+        }
+    }
+
+    private void CancelForm() => showForm = false;
+}

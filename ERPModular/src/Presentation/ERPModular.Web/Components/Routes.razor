@@ -1,0 +1,28 @@
+﻿<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
+            <NotAuthorized>
+                @if (context.User.Identity?.IsAuthenticated != true)
+                {
+                    <RedirectToLogin />
+                }
+                else
+                {
+                    <ERPModular.Web.Components.Account.Pages.AccessDenied />
+                }
+            </NotAuthorized>
+            <Authorizing>
+                <div class="d-flex justify-content-center align-items-center vh-100">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <span class="ms-2 text-muted">Verificando permissões...</span>
+                </div>
+            </Authorizing>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="typeof(Layout.MainLayout)">
+            <ERPModular.Web.Components.Pages.NotFound />
+        </LayoutView>
+    </NotFound>
+</Router>

@@ -1,0 +1,588 @@
+@page "/Admin/Dashboard"
+@using Microsoft.AspNetCore.Authorization
+@using ERPModular.Shared.Infrastructure.Persistence
+@using ERPModular.Shared.Domain.Models
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.JSInterop
+@attribute [Authorize(Roles = "SuperAdmin,Owner")]
+@rendermode InteractiveServer
+@inject SharedDbContext DbContext
+@inject ERPModular.Web.Services.SaaSControlService SaaSControl
+@inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
+
+<div class="container-fluid py-5 dashboard-admin">
+    <div class="header-section mb-5">
+        <h1 class="display-6 fw-bold mb-1 header-title">
+            <i class="fas fa-network-wired me-2 text-accent"></i>Painel de Controle <span class="text-accent">SaaS</span>
+        </h1>
+        <p class="text-subtitle lead">Gestão contextual de Domínios, Tenants e Usuários</p>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="kpi-card @(activeView == "dominios" ? "active" : "")" @onclick='() => SetView("dominios")'>
+                <div class="card-body p-4 d-flex align-items-center">
+                    <div class="kpi-icon-container me-3 bg-info-soft text-info">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div>
+                        <p class="kpi-label mb-0">Domínios</p>
+                        <h2 class="kpi-number mb-0">@totalDominios</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kpi-card @(activeView == "tenants" ? "active" : "")" @onclick='() => SetView("tenants")'>
+                <div class="card-body p-4 d-flex align-items-center">
+                    <div class="kpi-icon-container me-3 bg-primary-soft text-primary">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div>
+                        <p class="kpi-label mb-0">Empresas</p>
+                        <h2 class="kpi-number mb-0">@totalTenants</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kpi-card @(activeView == "usuarios" ? "active" : "")" @onclick='() => SetView("usuarios")'>
+                <div class="card-body p-4 d-flex align-items-center">
+                    <div class="kpi-icon-container me-3 bg-success-soft text-success">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <p class="kpi-label mb-0">Usuários</p>
+                        <h2 class="kpi-number mb-0">@totalUsuarios</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="kpi-card @(activeView == "convites" ? "active" : "")" @onclick='() => SetView("convites")'>
+                <div class="card-body p-4 d-flex align-items-center">
+                    <div class="kpi-icon-container me-3 bg-warning-soft text-warning">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <div>
+                        <p class="kpi-label mb-0">Convites Pendentes</p>
+                        <h2 class="kpi-number mb-0">@totalConvites</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visualizações Principais -->
+    <div class="row g-4 mb-5">
+        <!-- Gráfico de Crescimento -->
+        <div class="col-lg-8">
+            <div class="dashboard-box p-4 h-100 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="text-white fw-bold mb-0">
+                        <i class="fas fa-chart-line text-accent me-2"></i>Crescimento de Tenants
+                    </h5>
+                    <span class="badge bg-accent-soft text-accent">Últimos 6 meses</span>
+                </div>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Atividade Recente -->
+        <div class="col-lg-4">
+            <div class="dashboard-box p-4 h-100 shadow-sm">
+                <h5 class="text-white fw-bold mb-4">
+                    <i class="fas fa-bolt text-warning me-2"></i>Recém Chegados
+                </h5>
+                <div class="activity-list">
+                    @if (recentTenants != null)
+                    {
+                        @foreach (var rt in recentTenants)
+                        {
+                            <div class="activity-item d-flex align-items-center mb-3">
+                                <div class="activity-icon me-3">@rt.NomeFantasia[0]</div>
+                                <div class="flex-grow-1">
+                                    <div class="text-white small fw-bold">@rt.NomeFantasia</div>
+                                    <div class="text-muted extra-small">Admitido em @rt.DataAdesao.ToShortDateString()</div>
+                                </div>
+                                <span class="badge bg-success-soft text-success extra-small">Novo</span>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO DE DETALHES -->
+    <div class="detail-section mt-5 animate__animated animate__fadeIn">
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+            <h4 class="text-dark fw-bold mb-0">
+                @if (activeView == "dominios") { <span><i class="fas fa-layer-group text-info me-2"></i>Segmentos Ativos</span> }
+                else if (activeView == "tenants") { <span><i class="fas fa-building text-primary me-2"></i>Empresas Cadastradas</span> }
+                else if (activeView == "usuarios") { <span><i class="fas fa-users text-success me-2"></i>Base de Usuários</span> }
+                else if (activeView == "convites") { <span><i class="fas fa-paper-plane text-warning me-2"></i>Convites em Aberto</span> }
+                else { <span>Escolha uma categoria acima para detalhar</span> }
+            </h4>
+            <div class="d-flex gap-2">
+                <button @onclick='() => SetView("tree")' class="btn btn-sm @(activeView == "tree" ? "btn-accent" : "btn-outline-secondary")">
+                    <i class="fas fa-sitemap me-1"></i> Ver Árvore Completa
+                </button>
+                <button @onclick="RefreshData" class="btn btn-sm btn-light border">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        @if (dominiosList == null)
+        {
+            <div class="text-center py-5">
+                <div class="spinner-border text-accent" role="status"></div>
+                <p class="mt-2 text-muted">Carregando dados...</p>
+            </div>
+        }
+        else
+        {
+            @if (activeView == "dominios")
+            {
+                <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4">Nome do Segmento</th>
+                                <th>Descrição</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Empresas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var dom in dominiosList)
+                            {
+                                <tr>
+                                    <td class="ps-4 fw-bold text-dark">@dom.Nome</td>
+                                    <td class="text-muted">@dom.Descricao</td>
+                                    <td class="text-center"><span class="badge @(dom.Ativo ? "bg-success" : "bg-danger")">@(dom.Ativo ? "Ativo" : "Inativo")</span></td>
+                                    <td class="text-center fw-bold">@(tenantsList?.Count(t => t.DomainId == dom.Id) ?? 0)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else if (activeView == "tenants")
+            {
+                <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4">Empresa (Tenant)</th>
+                                <th>Segmento</th>
+                                <th class="text-center">Data Adesão</th>
+                                <th class="text-center">Usuários</th>
+                                <th class="text-center">Situação Licença</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var tenant in (tenantsList ?? new List<Tenant>()))
+                            {
+                                <tr>
+                                    <td class="ps-4 fw-bold text-dark">@tenant.NomeFantasia</td>
+                                    <td><span class="badge bg-info bg-opacity-10 text-info border-info">@(dominiosList?.FirstOrDefault(d => d.Id == tenant.DomainId)?.Nome ?? "N/A")</span></td>
+                                    <td class="text-center text-muted">@tenant.DataAdesao.ToShortDateString()</td>
+                                    <td class="text-center fw-bold">@(usersList?.Count(u => u.TenantId == tenant.Id) ?? 0)</td>
+                                    <td class="text-center">
+                                        @{
+                                            var status = GetCachedStatus(tenant.Id);
+                                        }
+                                        <span class="badge @(GetStatusClass(status))">@GetStatusLabel(status)</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else if (activeView == "usuarios")
+            {
+                <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4">Usuário</th>
+                                <th>Empresa</th>
+                                <th>E-mail</th>
+                                <th class="text-center">Onboarding</th>
+                                <th class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in (usersList ?? new List<ERPUser>()))
+                            {
+                                <tr>
+                                    <td class="ps-4 fw-bold text-dark">@user.FullName</td>
+                                    <td>@(tenantsList?.FirstOrDefault(t => t.Id == user.TenantId)?.NomeFantasia ?? "N/A")</td>
+                                    <td class="text-muted">@user.Email</td>
+                                    <td class="text-center">
+                                        @if (user.InvitationAccepted) { <i class="fas fa-check-circle text-success" title="Concluído"></i> }
+                                        else { <i class="fas fa-hourglass-half text-warning" title="Pendente"></i> }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (user.IsActive && user.ResetPasswordRequested)
+                                        {
+                                            <button class="btn btn-warning btn-sm fw-bold shadow-sm" 
+                                                    title="O usuário solicitou uma nova senha. Clique para liberar o desafio."
+                                                    @onclick="() => LiberarSenha(user)">
+                                                <i class="fas fa-key me-1"></i> Liberar Senha
+                                            </button>
+                                        }
+                                        else if (user.ResetPasswordAllowed)
+                                        {
+                                            <span class="badge bg-success-soft text-success border-success border-opacity-25">
+                                                <i class="fas fa-unlock me-1"></i> Senha Liberada
+                                            </span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else if (activeView == "convites")
+            {
+                <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4">Convidado</th>
+                                <th>Empresa</th>
+                                <th>E-mail</th>
+                                <th class="text-center">Data Convite</th>
+                                <th class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (pendingInvites != null && pendingInvites.Any())
+                            {
+                                @foreach (var invite in pendingInvites)
+                                {
+                                    <tr>
+                                        <td class="ps-4 fw-bold text-dark">@invite.FullName</td>
+                                        <td>@(tenantsList?.FirstOrDefault(t => t.Id == invite.TenantId)?.NomeFantasia ?? "N/A")</td>
+                                        <td class="text-muted">@invite.Email</td>
+                                        <td class="text-center">@invite.CreatedAt.ToShortDateString()</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-outline-info" title="Reenviar Link" @onclick="() => ReenviarConvite(invite)">
+                                                <i class="fas fa-redo"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center py-4 text-muted">
+                                        <i class="fas fa-check-circle text-success me-2"></i> Todos os convites foram aceitos!
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else if (activeView == "tree")
+            {
+                <div class="tree-view border rounded-4 bg-white p-3 p-md-4 shadow-sm">
+                    @foreach (var dom in dominiosList)
+                    {
+                        <div class="tree-node domain-node mb-3">
+                            <div class="node-header d-flex align-items-center p-3 rounded-3" @onclick="() => ToggleNode(dom.Id)">
+                                <i class="fas @(IsExpanded(dom.Id) ? "fa-chevron-down" : "fa-chevron-right") me-3 text-muted" style="font-size: 0.8rem;"></i>
+                                <div class="node-icon bg-info-subtle text-info me-3">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                                <div class="node-info flex-grow-1">
+                                    <span class="fw-bold text-dark d-block">@dom.Nome</span>
+                                    <span class="text-muted small">@dom.Descricao</span>
+                                </div>
+                                <span class="badge rounded-pill bg-light text-dark border">@(tenantsList?.Count(t => t.DomainId == dom.Id) ?? 0) empresas</span>
+                            </div>
+
+                            @if (IsExpanded(dom.Id))
+                            {
+                                <div class="node-children ms-5 mt-2 border-start ps-4">
+                                    @foreach (var tenant in (tenantsList?.Where(t => t.DomainId == dom.Id) ?? Enumerable.Empty<Tenant>()))
+                                    {
+                                        <div class="tree-node tenant-node mb-2">
+                                            <div class="node-header d-flex align-items-center p-2 rounded-3" @onclick="() => ToggleNode(tenant.Id)">
+                                                <i class="fas @(IsExpanded(tenant.Id) ? "fa-chevron-down" : "fa-chevron-right") me-2 text-muted" style="font-size: 0.7rem;"></i>
+                                                <div class="node-icon bg-primary-subtle text-primary me-2">
+                                                    <i class="fas fa-building"></i>
+                                                </div>
+                                                <div class="node-info flex-grow-1">
+                                                    <span class="fw-semibold text-dark">@tenant.NomeFantasia</span>
+                                                    <span class="badge extra-small @(GetStatusClass(GetCachedStatus(tenant.Id))) ms-2">@GetStatusLabel(GetCachedStatus(tenant.Id))</span>
+                                                </div>
+                                                <span class="badge bg-white text-muted border py-1 px-2">@(usersList?.Count(u => u.TenantId == tenant.Id) ?? 0)</span>
+                                            </div>
+
+                                            @if (IsExpanded(tenant.Id))
+                                            {
+                                                <div class="node-children ms-4 mt-2 border-start ps-4">
+                                                    @foreach (var user in (usersList?.Where(u => u.TenantId == tenant.Id) ?? Enumerable.Empty<ERPUser>()))
+                                                    {
+                                                        <div class="user-item d-flex align-items-center p-2 mb-1 rounded-2">
+                                                            <div class="node-icon bg-success-subtle text-success me-2" style="width: 24px; height: 24px; font-size: 0.75rem;">
+                                                                <i class="fas fa-user"></i>
+                                                            </div>
+                                                            <div class="user-info flex-grow-1">
+                                                                <span class="text-dark small fw-medium">@user.FullName</span>
+                                                                @if (user.IsActive && user.ResetPasswordRequested)
+                                                                {
+                                                                    <span class="badge bg-warning text-dark extra-small ms-2 animate__animated animate__flash animate__infinite">SOLICITOU SENHA</span>
+                                                                }
+                                                                <span class="text-muted extra-small d-block">@user.Email</span>
+                                                            </div>
+                                                            @if (user.IsActive && user.ResetPasswordRequested)
+                                                            {
+                                                                <button class="btn btn-xs text-warning fw-bold" 
+                                                                        @onclick="() => LiberarSenha(user)"
+                                                                        title="Liberar Troca de Senha">
+                                                                    <i class="fas fa-key me-1"></i> LIBERAR
+                                                                </button>
+                                                            }
+                                                            else if (user.ResetPasswordAllowed)
+                                                            {
+                                                                <i class="fas fa-unlock text-success small" title="Senha Liberada"></i>
+                                                            }
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<style>
+    :root {
+        --accent: #38bdf8;
+        --slate: #1e293b;
+        --border: #e2e8f0;
+    }
+    .text-accent { color: var(--accent) !important; }
+    .btn-accent { background: var(--accent); color: #0f172a; border: none; font-weight: 600; }
+    .bg-accent-soft { background: rgba(56, 189, 248, 0.1); }
+    .bg-info-soft { background: rgba(13, 202, 240, 0.1); }
+    .bg-primary-soft { background: rgba(13, 110, 253, 0.1); }
+    .bg-success-soft { background: rgba(25, 135, 84, 0.1); }
+    .bg-warning-soft { background: rgba(255, 193, 7, 0.1); }
+    
+    .kpi-card { 
+        background: #1e293b; 
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 16px; 
+        cursor: pointer; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .kpi-card.active { 
+        background: #f1f5f9; /* Cinza claro suave */
+        border: 1px solid var(--accent);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    .kpi-card.active .kpi-number { color: #0f172a !important; }
+    .kpi-card.active .kpi-label { color: #475569 !important; opacity: 1; }
+    .kpi-card.active .kpi-icon-container { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
+
+    .kpi-number { color: #ffffff; font-size: 1.85rem; font-weight: 800; line-height: 1.1; transition: all 0.3s; }
+    .kpi-label { 
+        color: #94a3b8; 
+        font-size: 0.75rem; 
+        font-weight: 700; 
+        text-transform: uppercase; 
+        letter-spacing: 0.8px; 
+        margin-bottom: 4px !important; 
+        display: block;
+        transition: all 0.3s; 
+    }
+    .kpi-icon-container { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+    
+    .dashboard-box {
+        background: #1e293b;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .activity-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(56, 189, 248, 0.1);
+        color: var(--accent);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .node-header { cursor: pointer; background: #f8fafc; margin-bottom: 2px; }
+    .node-header:hover { background: #f1f5f9; }
+    .border-start { border-left: 2px solid var(--border) !important; }
+    .extra-small { font-size: 0.7rem; }
+    .btn-xs { padding: 0.1rem 0.3rem; font-size: 0.75rem; line-height: 1; border-radius: 4px; border: none; background: transparent; }
+    .btn-xs:hover:not(:disabled) { background: rgba(0,0,0,0.05); }
+</style>
+
+@code {
+    private int totalDominios;
+    private int totalTenants;
+    private int totalUsuarios;
+    private int totalConvites;
+
+    private List<Dominio>? dominiosList;
+    private List<Tenant>? tenantsList;
+    private List<ERPUser>? usersList;
+    private List<ERPUser>? pendingInvites;
+    private List<Tenant>? recentTenants;
+
+    private string activeView = "tree";
+    private HashSet<string> expandedNodes = new();
+    private Dictionary<string, ERPModular.Web.Services.LicenseStatus> licenseCache = new();
+
+    private ERPModular.Web.Services.LicenseStatus GetCachedStatus(string tenantId) => 
+        licenseCache.TryGetValue(tenantId, out var s) ? s : ERPModular.Web.Services.LicenseStatus.Active;
+
+    private string GetStatusLabel(ERPModular.Web.Services.LicenseStatus status) => status switch {
+        ERPModular.Web.Services.LicenseStatus.Active => "Ativa",
+        ERPModular.Web.Services.LicenseStatus.GracePeriod => "Carência",
+        ERPModular.Web.Services.LicenseStatus.ReadOnly => "Restrita",
+        _ => "Expirada"
+    };
+
+    private string GetStatusClass(ERPModular.Web.Services.LicenseStatus status) => status switch {
+        ERPModular.Web.Services.LicenseStatus.Active => "bg-success",
+        ERPModular.Web.Services.LicenseStatus.GracePeriod => "bg-warning text-dark",
+        ERPModular.Web.Services.LicenseStatus.ReadOnly => "bg-danger",
+        _ => "bg-secondary"
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshData();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && tenantsList != null)
+        {
+            await RenderCharts();
+        }
+    }
+
+    private async Task RenderCharts()
+    {
+        // Lógica de Crescimento (Últimos 6 meses)
+        var months = new List<string>();
+        var values = new List<int>();
+
+        for (int i = 5; i >= 0; i--)
+        {
+            var date = DateTime.Today.AddMonths(-i);
+            var monthName = date.ToString("MMM/yy", new System.Globalization.CultureInfo("pt-BR"));
+            months.Add(monthName);
+            
+            var count = tenantsList?.Count(t => t.DataAdesao.Year == date.Year && t.DataAdesao.Month == date.Month) ?? 0;
+            values.Add(count);
+        }
+
+        await JSRuntime.InvokeVoidAsync("dashboardCharts.renderGrowthChart", "growthChart", months, values);
+    }
+
+    private async Task RefreshData()
+    {
+        try 
+        {
+            dominiosList = await DbContext.Dominios.OrderBy(d => d.Nome).ToListAsync();
+            tenantsList = await DbContext.Tenants.OrderByDescending(t => t.DataAdesao).ToListAsync();
+            usersList = await DbContext.Users.OrderBy(u => u.FullName).ToListAsync();
+
+            recentTenants = tenantsList.Take(5).ToList();
+
+            totalDominios = dominiosList?.Count ?? 0;
+            totalTenants = tenantsList?.Count ?? 0;
+            totalUsuarios = usersList?.Count ?? 0;
+            
+            pendingInvites = usersList?.Where(u => !u.InvitationAccepted).ToList();
+            totalConvites = pendingInvites?.Count ?? 0;
+            
+            // Pré-carregar status de licenças
+            licenseCache.Clear();
+            if (tenantsList != null)
+            {
+                foreach (var t in tenantsList)
+                {
+                    var (status, _, _) = await SaaSControl.GetLicenseStatusAsync(t.Id, t.DomainId);
+                    licenseCache[t.Id] = status;
+                }
+            }
+            
+            if (dominiosList != null && expandedNodes.Count == 0 && dominiosList.Count < 10)
+            {
+                foreach(var d in dominiosList) expandedNodes.Add(d.Id);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro: {ex.Message}");
+        }
+    }
+
+    private void SetView(string view) => activeView = (activeView == view) ? "tree" : view;
+
+    private void ToggleNode(string id)
+    {
+        if (expandedNodes.Contains(id)) expandedNodes.Remove(id);
+        else expandedNodes.Add(id);
+    }
+
+    private bool IsExpanded(string id) => expandedNodes.Contains(id);
+
+    private async Task ReenviarConvite(ERPUser user)
+    {
+        var token = user.InvitationToken ?? Guid.NewGuid().ToString("N");
+        
+        // Se não tinha token, salvamos um novo
+        if (user.InvitationToken == null)
+        {
+            user.InvitationToken = token;
+            DbContext.Users.Update(user);
+            await DbContext.SaveChangesAsync();
+        }
+
+        var inviteLink = $"{Navigation.BaseUri}Account/Onboarding?email={Uri.EscapeDataString(user.Email!)}&token={token}";
+        await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", inviteLink);
+        await JSRuntime.InvokeVoidAsync("alert", $"Link de convite para {user.FullName} copiado para a área de transferência!");
+    }
+
+    private async Task LiberarSenha(ERPUser user)
+    {
+        user.ResetPasswordAllowed = true;
+        user.ResetPasswordRequested = false; // Consome a solicitação
+        DbContext.Users.Update(user);
+        await DbContext.SaveChangesAsync();
+        await JSRuntime.InvokeVoidAsync("alert", $"A troca de senha para {user.FullName} foi liberada com sucesso.");
+    }
+}

@@ -1,0 +1,205 @@
+﻿@rendermode InteractiveServer
+@using ERPModular.Shared.Infrastructure.Persistence
+@using ERPModular.Shared.Domain.Models
+@using Microsoft.EntityFrameworkCore
+@using ERPModular.Shared.Infrastructure.Extensions
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.JSInterop
+
+@inject IServiceScopeFactory ScopeFactory
+@inject AuthenticationStateProvider AuthStateProvider
+@inject UserManager<ERPUser> UserManager
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
+
+<div class="nav-top-wrapper">
+    <div class="nav-left">
+        <a class="system-brand" href="/">
+            <span class="logo-text">ERP</span><span class="logo-accent">Modular</span>
+        </a>
+    </div>
+
+    <input type="checkbox" id="nav-toggler-check" class="nav-toggler-check" />
+    <label for="nav-toggler-check" class="navbar-toggler">
+        <i class="fas fa-bars icon-open"></i>
+        <i class="fas fa-times icon-close"></i>
+    </label>
+
+    <div class="nav-middle">
+        <nav class="nav-links-horizontal">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                Home
+            </NavLink>
+
+            <AuthorizeView Context="authContext">
+                <Authorized>
+                    <AuthorizeView Roles="SuperAdmin,Owner">
+                        <NavLink class="nav-link" href="/Admin/Dashboard">
+                            Dashboard
+                        </NavLink>
+                    </AuthorizeView>
+                    
+                    <AuthorizeView Roles="SuperAdmin">
+                        <NavLink class="nav-link" href="/Admin/SaaS/Licenses">
+                            Licenças
+                        </NavLink>
+                        <NavLink class="nav-link" href="/Admin/SaaS/Audit">
+                            Auditoria
+                        </NavLink>
+                    </AuthorizeView>
+
+                    <AuthorizeView Roles="SuperAdmin,Admin,Owner">
+                        <NavLink class="nav-link" href="/Admin/Users">
+                            Usuários
+                        </NavLink>
+                    </AuthorizeView>
+
+                    @if (authContext.User?.GetDomainId() == "confecao" && !authContext.User.IsInRole("SuperAdmin"))
+                    {
+                        <NavLink class="nav-link" href="/Confecao/Produtos">
+                            Produtos
+                        </NavLink>
+                    }
+                </Authorized>
+                <NotAuthorized>
+                    <NavLink class="nav-link" href="/Account/Login">
+                        Entrar
+                    </NavLink>
+                </NotAuthorized>
+            </AuthorizeView>
+        </nav>
+    </div>
+
+    <div class="nav-right">
+        <AuthorizeView>
+            <Authorized>
+                <div class="dropdown user-dropdown">
+                    <button class="btn dropdown-toggle user-tenant-box" type="button" @onclick="ToggleUserMenu">
+                        @if (tenant != null)
+                        {
+                            <div class="brand-info text-end me-2">
+                                <div class="company-name fw-bold">@tenant.NomeFantasia</div>
+                                <div class="user-display small text-accent-soft">@loggedInUserName</div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(tenant.LogoUrl))
+                            {
+                                <img src="@tenant.LogoUrl" alt="Logo" class="tenant-logo" />
+                            }
+                        }
+                        else
+                        {
+                            <div class="brand-info text-end me-2">
+                                <div class="company-name fw-bold small">ADMINISTRAÇÃO</div>
+                                <div class="user-display small text-accent-soft">@loggedInUserName</div>
+                            </div>
+                            <div class="brand-icon-placeholder">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                        }
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg animate__animated animate__fadeIn @(isUserMenuOpen ? "show" : "")" style="display: @(isUserMenuOpen ? "block" : "none")">
+                        <li class="px-3 py-2 border-bottom border-secondary border-opacity-10 mb-2">
+                            <span class="text-white-50 extra-small fw-bold text-uppercase">Configurações</span>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/Account/Profile" @onclick="CloseUserMenu">
+                                <i class="fas fa-user-edit me-2"></i> Alterar nome de exibição
+                            </a>
+                        </li>
+                        <li>
+                            <div class="px-3 py-2 d-flex justify-content-between align-items-center theme-toggle-container" @onclick:stopPropagation>
+                                <span class="text-secondary small"><i class="fas fa-moon me-2"></i> Modo Escuro</span>
+                                <div class="form-check form-switch mb-0">
+                                    <input class="form-check-input" type="checkbox" id="themeSwitch" @bind="IsDarkMode" @onclick:stopPropagation>
+                                </div>
+                            </div>
+                        </li>
+                        <li><hr class="dropdown-divider bg-secondary opacity-25"></li>
+                        <li>
+                            <button class="dropdown-item text-danger w-100 text-start" @onclick="HandleLogout">
+                                <i class="fas fa-sign-out-alt me-2"></i> Sair
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </Authorized>
+            <NotAuthorized>
+                <div class="guest-info d-flex align-items-center text-white-50 small">
+                    <i class="fas fa-user-lock me-2"></i> Visitante
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+
+@code {
+    private Tenant? tenant;
+    private string? tenantId;
+    private string? loggedInUserName;
+    private bool collapseNavMenu = true;
+    private bool isUserMenuOpen = false;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void ToggleUserMenu() => isUserMenuOpen = !isUserMenuOpen;
+    private void CloseUserMenu() => isUserMenuOpen = false;
+
+    private bool _isDarkMode = true;
+    private bool IsDarkMode
+    {
+        get => _isDarkMode;
+        set
+        {
+            if (_isDarkMode != value)
+            {
+                _isDarkMode = value;
+                _ = JS.InvokeVoidAsync("setTheme", _isDarkMode ? "dark" : "light");
+            }
+        }
+    }
+
+    private void HandleLogout()
+    {
+        CloseUserMenu();
+        Navigation.NavigateTo("/Account/Logout", forceLoad: true);
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+            var userClaims = authState.User;
+
+            if (userClaims.Identity?.IsAuthenticated == true)
+            {
+                tenantId = userClaims.GetTenantId();
+
+                // Criamos um escopo novo apenas para o NavMenu para evitar concorrência com o DbContext da página principal
+                using var scope = ScopeFactory.CreateScope();
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ERPUser>>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<SharedDbContext>();
+
+                var user = await userManager.GetUserAsync(userClaims);
+                
+                loggedInUserName = (user?.DisplayName ?? user?.FullName)?.ToShortName();
+
+                if (!string.IsNullOrEmpty(tenantId))
+                {
+                    tenant = await dbContext.Tenants.AsNoTracking().FirstOrDefaultAsync(t => t.Id == tenantId);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro no NavMenu: {ex.Message}");
+        }
+    }
+}
