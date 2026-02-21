@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ERPModular.Confecao.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+831215bf8f1029e1e7da4927b4bddb5cc3432780")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+589f9a0f2aa42127b2dfbeb3d2b2518c2b025975")]
 [assembly: System.Reflection.AssemblyProductAttribute("ERPModular.Confecao.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ERPModular.Confecao.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

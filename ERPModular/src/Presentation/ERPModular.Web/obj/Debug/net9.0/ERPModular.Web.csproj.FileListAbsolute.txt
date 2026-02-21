@@ -438,7 +438,6 @@ D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.
 D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\nezrqnk58p-muycvpuwrr.gz
 D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\v0zgfp0y55-87fc7y1x7t.gz
 D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
-D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\hyh8dy90z1-y3ebae35lf.gz
 D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\13xs0bvaib-bqjiyaj88i.gz
 D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\uhcl61w3do-c2jlpeoesf.gz
 D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\d05e4pdjk9-erw9l3u2r3.gz
@@ -493,6 +492,7 @@ D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.
 D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\ERPModular.Web.pdb
 D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\ERPModular.Web.genruntimeconfig.cache
 D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\ref\ERPModular.Web.dll
-D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\6yw5tqu6gt-awvj4wisa3.gz
-D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\0hmyo97y36-opxn0iddvf.gz
-D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\zfc80dnyuq-opxn0iddvf.gz
+D:\Curso\MeusProjetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\6yw5tqu6gt-kpuwd4ec16.gz
+D:\Curso\MeusProjetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\hyh8dy90z1-kkfis5ajf4.gz
+D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\0hmyo97y36-408r3mdhp9.gz
+D:\curso\meusprojetos\ERPModular\src\Presentation\ERPModular.Web\obj\Debug\net9.0\compressed\zfc80dnyuq-408r3mdhp9.gz

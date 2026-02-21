@@ -6,6 +6,7 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.EntityFrameworkCore
 @using System.Security.Claims
+@using Microsoft.JSInterop
 @attribute [Authorize(Roles = "Admin,SuperAdmin,Owner")]
 @inject SharedDbContext DbContext
 @inject UserManager<ERPUser> UserManager
@@ -18,12 +19,12 @@
 <div class="user-list-container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h3 class="text-info mb-0">Gestão de Usuários</h3>
+            <h3 class="theme-text-header fw-bold mb-1">Gestão de Usuários</h3>
             @if (IsReadOnly)
             {
                 <span class="badge bg-danger mb-2 animate__animated animate__pulse animate__infinite">MODO SOMENTE LEITURA</span>
             }
-            <p class="text-muted small">Gerencie quem tem acesso à sua empresa.</p>
+            <p class="text-subtitle lead small">Gerencie quem tem acesso à tecnologia da sua empresa.</p>
         </div>
 
         <button class="btn btn-primary" @onclick="GoToCreate" disabled="@IsReadOnly">
@@ -42,7 +43,7 @@
 
     @* Alerta de sucesso removido para uma experiência mais ágil conforme solicitação do usuário *@
 
-    <div class="table-card">
+    <div class="premium-card border-0 shadow-sm overflow-hidden">
         @if (Users == null)
         {
             <div class="text-center p-5">
@@ -59,14 +60,14 @@
         else
         {
             <div class="table-responsive">
-                <table class="table table-dark table-hover mb-0">
-                <thead>
+                <table class="table table-hover mb-0">
+                <thead class="theme-table-header">
                     <tr>
-                        <th>Nome</th>
-                        <th>Função / Nível</th>
-                        <th>Status</th>
-                        <th>Criado em</th>
-                        <th class="text-end">
+                        <th class="ps-4 text-subtitle">Nome</th>
+                        <th class="text-subtitle">Função / Nível</th>
+                        <th class="text-subtitle">Status</th>
+                        <th class="text-subtitle">Criado em</th>
+                        <th class="text-end text-subtitle pe-4">
                             Ações
                             <span class="help-icon ms-1" @onclick="() => showHelpModal = true" title="Ajuda sobre as ações">
                                 <i class="bi bi-question-circle text-info"></i>
@@ -77,40 +78,40 @@
                 <tbody>
                     @foreach (var user in Users)
                     {
-                        <tr class="@(user.IsActive ? "" : "opacity-50 bg-danger bg-opacity-10")">
+                        <tr class="@(user.IsActive ? "" : "opacity-75 bg-danger-soft")">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar-circle @(user.IsActive ? "" : "bg-danger") me-3">@((user.DisplayName ?? user.FullName ?? "U")[0])</div>
+                                    <div class="avatar-circle-premium @(user.IsActive ? "bg-accent-soft text-accent" : "bg-danger-soft text-danger") me-3">@((user.DisplayName ?? user.FullName ?? "U")[0])</div>
                                     <div>
-                                        <div class="fw-bold">@((user.DisplayName ?? user.FullName).ToShortName())</div>
-                                        <div class="text-muted extra-small">@GetRoleDisplayName(user.Id)</div>
+                                        <div class="fw-bold theme-text">@((user.DisplayName ?? user.FullName).ToShortName())</div>
+                                        <div class="text-subtitle extra-small">@GetRoleDisplayName(user.Id)</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="fw-bold text-accent extra-small">@user.Funcao</div>
-                                <div class="text-muted extra-small">@user.NivelAcesso</div>
+                                <div class="text-subtitle extra-small">@user.NivelAcesso</div>
                             </td>
                             <td>
                                 @if (!user.InvitationAccepted)
                                 {
-                                    <span class="badge bg-warning text-dark">
+                                    <span class="badge bg-warning-soft text-warning border border-warning border-opacity-10">
                                         <i class="bi bi-envelope-exclamation me-1"></i> Convite Pendente
                                     </span>
                                 }
                                 else if (user.IsActive)
                                 {
-                                    <span class="badge bg-success-subtle text-success">Ativo</span>
+                                    <span class="badge bg-success-soft text-success border border-success border-opacity-10">Ativo</span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-danger text-white">
+                                    <span class="badge bg-danger-soft text-danger border border-danger border-opacity-10">
                                         <i class="bi bi-person-x-fill me-1"></i> BLOQUEADO
                                     </span>
                                 }
                             </td>
-                            <td>@user.CreatedAt.ToShortDateString()</td>
-                            <td class="text-end">
+                            <td class="theme-text">@user.CreatedAt.ToShortDateString()</td>
+                            <td class="text-end pe-4">
                                 @if (userPermissions.ContainsKey(user.Id) && userPermissions[user.Id])
                                 {
                                     @if (user.InvitationAccepted)
@@ -120,13 +121,13 @@
                                         <button class="btn btn-sm btn-warning fw-bold shadow-sm me-2" 
                                                 title="Solicitação de nova senha pendente"
                                                 @onclick="() => LiberarSenha(user)">
-                                            <i class="bi bi-key-fill me-1"></i> LIBERAR SENHA
+                                            <i class="bi bi-key-fill me-1"></i> LIBERAR ACESSO
                                         </button>
                                     }
                                     else if (user.ResetPasswordAllowed)
                                     {
-                                        <span class="badge bg-success-subtle text-success me-2 border border-success border-opacity-25">
-                                            <i class="bi bi-unlock-fill me-1"></i> Senha Liberada
+                                        <span class="badge bg-success-soft text-success me-2 border border-success border-opacity-25">
+                                            <i class="bi bi-unlock-fill me-1"></i> Liberada
                                         </span>
                                     }
 
@@ -159,27 +160,27 @@
     @if (showHelpModal)
     {
         <div class="modal-overlay" @onclick="() => showHelpModal = false">
-            <div class="custom-modal help-modal" @onclick:stopPropagation="true">
-                <div class="modal-header">
-                    <h5 class="text-info mb-0"><i class="bi bi-info-circle me-2"></i>Sobre as Ações</h5>
-                    <button class="btn-close btn-close-white" @onclick="() => showHelpModal = false"></button>
+            <div class="custom-modal theme-card border-0 shadow-lg p-4 rounded-4" style="max-width: 400px;" @onclick:stopPropagation="true">
+                <div class="modal-header border-bottom mb-3 pb-2">
+                    <h5 class="theme-text fw-bold mb-0"><i class="bi bi-info-circle text-info me-2"></i>Sobre as Ações</h5>
+                    <button class="btn-close @(IsDarkMode ? "btn-close-white" : "")" @onclick="() => showHelpModal = false"></button>
                 </div>
-                <div class="modal-body text-start py-4">
+                <div class="modal-body text-start">
                     <div class="mb-3">
-                        <p class="text-white mb-1"><strong><i class="bi bi-lock text-warning me-2"></i>Bloquear:</strong></p>
-                        <p class="text-muted small">Suspende temporariamente o acesso do usuário ao sistema.</p>
+                        <p class="theme-text mb-1"><strong><i class="bi bi-lock text-warning me-2"></i>Bloquear:</strong></p>
+                        <p class="text-subtitle small">Suspende temporariamente o acesso do usuário ao sistema.</p>
                     </div>
                     <div class="mb-3">
-                        <p class="text-white mb-1"><strong><i class="bi bi-unlock text-success me-2"></i>Ativar:</strong></p>
-                        <p class="text-muted small">Restaura o acesso de um usuário que estava bloqueado.</p>
+                        <p class="theme-text mb-1"><strong><i class="bi bi-unlock text-success me-2"></i>Ativar:</strong></p>
+                        <p class="text-subtitle small">Restaura o acesso de um usuário que estava bloqueado.</p>
                     </div>
                     <div class="mb-3">
-                        <p class="text-white mb-1"><strong><i class="bi bi-pencil text-info me-2"></i>Editar:</strong></p>
-                        <p class="text-muted small">Altera dados cadastrais como nome e cargo.</p>
+                        <p class="theme-text mb-1"><strong><i class="bi bi-pencil text-info me-2"></i>Editar:</strong></p>
+                        <p class="text-subtitle small">Altera dados cadastrais como nome e cargo.</p>
                     </div>
                     <div class="mb-0">
-                        <p class="text-white mb-1"><strong><i class="bi bi-trash text-danger me-2"></i>Excluir:</strong></p>
-                        <p class="text-muted small">Remove o usuário permanentemente (ação irreversível).</p>
+                        <p class="theme-text mb-1"><strong><i class="bi bi-trash text-danger me-2"></i>Excluir:</strong></p>
+                        <p class="text-subtitle small">Remove o usuário permanentemente (ação irreversível).</p>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -192,15 +193,15 @@
     @if (userToDelete != null)
     {
         <div class="modal-overlay" @onclick="() => userToDelete = null">
-            <div class="custom-modal help-modal" @onclick:stopPropagation="true">
-                <div class="modal-header">
-                    <h5 class="text-danger mb-0"><i class="bi bi-trash me-2"></i>Excluir Usuário</h5>
-                    <button class="btn-close btn-close-white" @onclick="() => userToDelete = null"></button>
+            <div class="custom-modal theme-card border-0 shadow-lg p-4 rounded-4" style="max-width: 450px;" @onclick:stopPropagation="true">
+                <div class="modal-header border-bottom mb-3 pb-2">
+                    <h5 class="theme-text fw-bold mb-0 text-danger"><i class="bi bi-trash me-2"></i>Excluir Usuário</h5>
+                    <button class="btn-close @(IsDarkMode ? "btn-close-white" : "")" @onclick="() => userToDelete = null"></button>
                 </div>
-                <div class="modal-body text-start py-4">
-                    <p class="text-white">Tem certeza que deseja excluir o usuário:</p>
+                <div class="modal-body text-start">
+                    <p class="theme-text">Tem certeza que deseja excluir o usuário:</p>
                     <p class="fw-bold text-warning">@userToDelete.FullName (@userToDelete.Email)</p>
-                    <p class="text-muted small">O convite ainda não foi aceito. Esta ação é irreversível.</p>
+                    <p class="text-subtitle small">O convite ainda não foi aceito. Esta ação é irreversível.</p>
                 </div>
                 <div class="modal-footer d-flex gap-2">
                     <button class="btn btn-outline-secondary flex-fill" @onclick="() => userToDelete = null">Cancelar</button>
@@ -215,11 +216,13 @@
 </div>
 
 @code {
+    [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
     private List<ERPUser>? Users;
     private ClaimsPrincipal? currentUser;
     private Dictionary<string, bool> userPermissions = new();
     private string errorMessage = "";
     private bool IsReadOnly = false;
+    private bool IsDarkMode = true;
 
     private bool showHelpModal = false;
     private ERPUser? userToDelete;
@@ -227,6 +230,16 @@
     private List<string> ownerIds = new();
     private List<string> adminIds = new();
     private Dictionary<string, string> userRoles = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var theme = await JSRuntime.InvokeAsync<string>("getTheme");
+            IsDarkMode = theme == "dark";
+            StateHasChanged();
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -528,73 +541,24 @@
 
 <style>
     .user-list-container { padding: 10px 30px 30px 30px; }
-    .table-card {
-        background: #1e293b;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-    .table thead th {
-        background: rgba(15, 23, 42, 0.5);
-        color: #94a3b8;
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.75rem;
-        letter-spacing: 0.05em;
-        padding: 15px;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
+    
     .table tbody td {
         padding: 15px;
         vertical-align: middle;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid var(--border-color);
     }
-    .avatar-circle {
-        width: 40px;
-        height: 40px;
-        background: #38bdf8;
-        color: #0f172a;
-        border-radius: 50%;
+    .avatar-circle-premium {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 700;
-        font-size: 1.1rem;
+        font-weight: 800;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
     }
     .badge { padding: 6px 10px; border-radius: 6px; font-weight: 600; font-size: 0.7rem; }
-
-    /* HELP MODAL STYLES */
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(4px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-    }
-
-    .help-modal {
-        background: #1e293b;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        width: 90%;
-        max-width: 350px;
-        padding: 20px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    }
-
-    .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        padding-bottom: 10px;
-    }
 
     .help-icon {
         cursor: pointer;

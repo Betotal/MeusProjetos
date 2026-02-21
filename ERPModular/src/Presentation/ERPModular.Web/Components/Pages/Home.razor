@@ -4,130 +4,152 @@
 <PageTitle>ERPModular - Painel de Progresso</PageTitle>
 
 <div class="container py-5">
-    <div class="text-center mb-5">
+    <div class="text-center mb-5 animate__animated animate__fadeIn">
         <h1 class="display-3 fw-bold text-gradient">🚀 ERPModular</h1>
-        <p class="lead fs-4 text-white-50">Sistema de Gestão Multi-Domínio, Multi-Tenant e Multi-Schema</p>
+        <p class="lead fs-4 text-white-50">Sistema de Gestão Multi-Domínio e Multi-Tenant</p>
         <div class="d-flex justify-content-center mt-3">
-            <span class="badge bg-success ms-2 px-3 py-2 rounded-pill shadow-sm">✅ Fases 1, 2, 3, 4 e 5 Concluídas</span>
+            <span class="badge bg-success ms-2 px-3 py-2 rounded-pill shadow-sm border border-success border-opacity-25 text-white">
+                <i class="fas fa-check-circle me-1"></i> Fases 1 a 6 Concluídas
+            </span>
         </div>
     </div>
 
     <!-- Barra de Progresso Geral -->
     <div class="row mb-5">
         <div class="col-md-10 offset-md-1">
-            <div class="progress-container p-4 rounded-4 shadow-lg bg-dark border border-secondary">
+            <div class="progress-box p-4 rounded-4 shadow-lg bg-dark border border-secondary border-opacity-25">
                 <div class="d-flex justify-content-between mb-2">
-                    <span class="text-white fw-bold">Progresso das 16 Fases</span>
-                    <span class="text-accent fw-bold">31% Completo (5/16)</span>
+                    <span class="text-white fw-bold"><i class="fas fa-road me-2 text-accent"></i>Progresso Geral das 16 Fases</span>
+                    <span class="text-accent fw-bold text-shadow-accent">37% Completo</span>
                 </div>
-                <div class="progress bg-secondary" style="height: 12px;">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-accent" role="progressbar" style="width: 31%;"></div>
+                <div class="progress bg-secondary bg-opacity-25" style="height: 12px; border-radius: 10px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-accent shadow-accent" role="progressbar" style="width: 37%;"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row g-4">
-        <!-- Coluna da Esquerda: Resumo das Fases -->
+        <!-- Coluna da Esquerda: Cronograma Detalhado -->
         <div class="col-lg-8">
-            <div class="card bg-dark border-secondary rounded-4 shadow h-100">
+            <div class="card bg-dark border-secondary rounded-4 shadow h-100 overflow-hidden">
                 <div class="card-header bg-transparent border-secondary p-4">
-                    <h5 class="mb-0 text-white fw-bold"><i class="fas fa-list-check me-2 text-accent"></i>Cronograma Multi-Domínio</h5>
-                    <p class="small text-white-50 mt-1 mb-0">Clique nos títulos para ver detalhes de cada fase.</p>
+                    <h5 class="mb-0 text-white fw-bold"><i class="fas fa-list-check me-2 text-accent"></i>Cronograma de Execução</h5>
+                    <p class="small text-white-50 mt-1 mb-0">Clique em cada fase para ver o detalhamento e as etapas concluídas.</p>
                 </div>
                 <div class="card-body p-0">
-                    <div class="list-group list-group-flush rounded-bottom-4 overflow-hidden">
+                    <div class="list-group list-group-flush">
                         
                         <!-- INFRAESTRUTURA -->
-                        <div class="group-header bg-secondary bg-opacity-10 px-4 py-2 border-bottom border-secondary">
-                            <span class="text-accent extra-small fw-bold text-uppercase">Infraestrutura Compartilhada</span>
+                        <div class="group-header bg-secondary bg-opacity-10 px-4 py-2 border-bottom border-secondary border-opacity-25">
+                            <span class="text-accent-soft extra-small fw-bold text-uppercase letter-spacing-1">Camada de Infraestrutura</span>
                         </div>
 
                         <!-- FASE 1-4 -->
                         <div class="phase-item @(expandedPhases[0] ? "expanded" : "")" @onclick="() => TogglePhase(0)">
-                            <div class="list-group-item bg-success bg-opacity-10 border-secondary p-3 clickable">
+                            <div class="list-group-item bg-success bg-opacity-5 border-secondary p-4 clickable">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0 text-white small fw-bold">FASES 1 a 4: FUNDAÇÕES E AUTH</h6>
-                                    <span class="badge bg-success extra-small">CONCLUÍDAS ✅</span>
+                                    <h6 class="mb-0 text-white fw-bold"><i class="fas fa-square-check text-success me-3"></i>FASES 1 a 4: FUNDAÇÕES E AUTH</h6>
+                                    <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-25 px-2 py-1 extra-small">CONCLUÍDAS ✅</span>
                                 </div>
                             </div>
-                            <div class="phase-details p-3 bg-dark border-bottom border-secondary">
-                                <ul class="small text-white-50 mb-0">
-                                    <li>Arquitetura Multi-Tenant / Multi-Schema configurada.</li>
-                                    <li>Injeção de Dependência e Projetos Shared implementados.</li>
-                                    <li>ASP.NET Identity com suporte a domínios customizados.</li>
-                                    <li>Fluxo de convites e provisionamento automatizado.</li>
-                                </ul>
+                            <div class="phase-details p-4 bg-dark-depth">
+                                <div class="detalhamento-container">
+                                    <h6 class="text-accent extra-small fw-bold text-uppercase mb-3">Pontos Importantes:</h6>
+                                    <ul class="small text-white-50">
+                                        <li>Arquitetura Multi-Tenant / Multi-Schema física isolada.</li>
+                                        <li>Projetos Shared (Domain, Application, Infrastructure).</li>
+                                        <li>ASP.NET Identity customizado para múltiplos domínios.</li>
+                                        <li>Fluxo de convites para novos Owners e provisionamento.</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- FASE 5 -->
+                        <!-- FASE 5 e 6 -->
                         <div class="phase-item @(expandedPhases[1] ? "expanded" : "")" @onclick="() => TogglePhase(1)">
-                            <div class="list-group-item bg-success bg-opacity-10 border-secondary p-3 clickable">
+                            <div class="list-group-item bg-success bg-opacity-5 border-secondary p-4 clickable">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0 text-white small fw-bold">FASE 5: GESTÃO SAAS E LICENÇAS</h6>
-                                    <span class="badge bg-success extra-small">CONCLUÍDA ✅</span>
+                                    <h6 class="mb-0 text-white fw-bold"><i class="fas fa-shield-halved text-success me-3"></i>FASE 5-6: GESTÃO SAAS E UI/UX</h6>
+                                    <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-25 px-2 py-1 extra-small">CONCLUÍDAS ✅</span>
                                 </div>
                             </div>
-                            <div class="phase-details p-3 bg-dark border-bottom border-secondary">
-                                <ul class="small text-white-50 mb-0">
-                                    <li>Gestor de Licenças (Status Ativo/Suspenso/ReadOnly).</li>
-                                    <li>Central de Auditoria para logs administrativos.</li>
-                                    <li>Painel Super-Admin com KPIs de crescimento.</li>
-                                    <li>Bloqueio automático de escrita em modo Read-Only.</li>
-                                </ul>
+                            <div class="phase-details p-4 bg-dark-depth">
+                                <div class="detalhamento-container">
+                                    <h6 class="text-accent extra-small fw-bold text-uppercase mb-3">Tecnologias e Funcionalidades:</h6>
+                                    <ul class="small text-white-50">
+                                        <li>Gestor de Licenças e Central de Auditoria Log.</li>
+                                        <li>Painel Super-Admin com KPIs e Interatividade Server.</li>
+                                        <li>Refino de UI/UX com modo Escuro/Claro inteligente.</li>
+                                        <li>Controle de Escrita (Bloqueio automático por licença).</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- FASE 6 -->
-                        <div class="phase-item @(expandedPhases[2] ? "expanded" : "")" @onclick="() => TogglePhase(2)">
-                            <div class="list-group-item bg-primary bg-opacity-10 border-primary border-start border-4 p-3 clickable">
+                        <!-- DOMÍNIO CONFECÇÃO (FASE ATUAL EM ANDAMENTO) -->
+                        <div class="group-header bg-secondary bg-opacity-10 px-4 py-2 border-bottom border-secondary border-opacity-25 mt-2">
+                            <span class="text-info extra-small fw-bold text-uppercase letter-spacing-1">Módulos de Negócio</span>
+                        </div>
+                        <div class="phase-item @(expandedPhases[2] ? "expanded" : "active")" @onclick="() => TogglePhase(2)">
+                            <div class="list-group-item bg-primary bg-opacity-10 border-primary border-start border-4 p-4 clickable">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0 text-white small fw-bold">FASE 6: FINALIZAÇÃO INFRA / SCAFFOLD</h6>
-                                    <span class="badge bg-primary pulse extra-small">EM EXECUÇÃO 🔨</span>
+                                    <h6 class="mb-0 text-white fw-bold"><i class="fas fa-industry text-accent me-3 pulse"></i>FASE 7-13: CORE CONFECÇÃO</h6>
+                                    <span class="badge bg-primary px-3 py-1 rounded-pill pulse extra-small">EM ANDAMENTO 🔨</span>
                                 </div>
+                                <div class="mt-2 small text-accent-soft fw-bold">Trabalhando no Módulo de Estoque e Dashboard.</div>
                             </div>
-                            <div class="phase-details p-3 bg-dark border-bottom border-secondary">
-                                <ul class="small text-white-50 mb-0">
-                                    <li>Refino de UI/UX Premium e Menu Mobile Dinâmico.</li>
-                                    <li>Padronização de Interatividade (Ilhas de Interatividade).</li>
-                                    <li>Blindagem final de autenticação (Cookie vs SignalR).</li>
-                                    <li>Gerador de Código (Scaffolding) para novos domínios.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- DOMÍNIO CONFECÇÃO -->
-                        <div class="group-header bg-secondary bg-opacity-10 px-4 py-2 border-bottom border-secondary mt-2">
-                            <span class="text-info extra-small fw-bold text-uppercase">Domínio: Confecção</span>
-                        </div>
-                        <div class="phase-item @(expandedPhases[3] ? "expanded" : "")" @onclick="() => TogglePhase(3)">
-                            <div class="list-group-item bg-dark border-secondary p-4 clickable opacity-75">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h6 class="mb-0 text-white-50 fw-bold">FASES 7 a 13: CORE CONFECÇÃO</h6>
-                                    <span class="badge bg-secondary extra-small">AGUARDANDO</span>
+                            <div class="phase-details p-4 bg-dark-depth show-active">
+                                <div class="current-phase-breakdown">
+                                    <h6 class="text-accent extra-small fw-bold text-uppercase mb-3">Etapas Granulares (Progresso Atual):</h6>
+                                    <div class="etapas-grid">
+                                        <div class="etapa-item done">
+                                            <span class="etapa-num">7.1</span>
+                                            <span class="etapa-txt">Cadastro de Produtos e Variações</span>
+                                        </div>
+                                        <div class="etapa-item done">
+                                            <span class="etapa-num">7.2</span>
+                                            <span class="etapa-txt">Lógica de Saldo e Movimentação Atômica</span>
+                                        </div>
+                                        <div class="etapa-item done">
+                                            <span class="etapa-num">7.3</span>
+                                            <span class="etapa-txt">Estoque Mínimo e Alertas de Ruptura</span>
+                                        </div>
+                                        <div class="etapa-item done">
+                                            <span class="etapa-num">7.4</span>
+                                            <span class="etapa-txt">Histórico de Preços e Rastreabilidade</span>
+                                        </div>
+                                        <div class="etapa-item done">
+                                            <span class="etapa-num">7.5</span>
+                                            <span class="etapa-txt">CRUD Dinâmico (UI Premium)</span>
+                                        </div>
+                                        <div class="etapa-item done">
+                                            <span class="etapa-num">7.6</span>
+                                            <span class="etapa-txt">Dashboard e KPIs Gerenciais</span>
+                                        </div>
+                                        <div class="etapa-item doing pulse-border">
+                                            <span class="etapa-num">7.7</span>
+                                            <span class="etapa-txt fw-bold">Scaffold do Domínio Salão</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 p-3 bg-secondary bg-opacity-10 rounded-3 border border-secondary border-opacity-10 shadow-sm">
+                                        <h6 class="text-white-50 extra-small fw-bold mb-2">PONTO ATUAL:</h6>
+                                        <p class="small text-white mb-0">Iniciando a preparação da estrutura para o Domínio de Salão de Beleza, incluindo criação do Schema e Entidades base.</p>
+                                    </div>
                                 </div>
-                                <small class="text-muted">Estoque, Produção, PDV, Reserva Online e Compras.</small>
-                            </div>
-                            <div class="phase-details p-3 bg-dark border-bottom border-secondary">
-                                <p class="small text-muted mb-0">Módulos específicos para fomento da indústria têxtil, incluindo controle de facções e rastreabilidade de lotes.</p>
                             </div>
                         </div>
 
                         <!-- DOMÍNIO SALÃO DE BELEZA -->
-                        <div class="group-header bg-secondary bg-opacity-10 px-4 py-2 border-bottom border-secondary mt-2">
-                            <span class="text-warning extra-small fw-bold text-uppercase">Domínio: Salão de Beleza</span>
-                        </div>
-                        <div class="phase-item @(expandedPhases[4] ? "expanded" : "")" @onclick="() => TogglePhase(4)">
+                        <div class="phase-item @(expandedPhases[3] ? "expanded" : "")" @onclick="() => TogglePhase(3)">
                             <div class="list-group-item bg-dark border-secondary p-4 clickable opacity-75">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h6 class="mb-0 text-white-50 fw-bold">FASES 14 a 16: CORE SALÃO</h6>
-                                    <span class="badge bg-secondary extra-small">AGUARDANDO</span>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0 text-white-50 fw-bold"><i class="fas fa-hand-holding-heart me-3"></i>FASE 14-16: CORE SALÃO</h6>
+                                    <span class="badge bg-secondary px-2 py-1 extra-small">AGUARDANDO</span>
                                 </div>
-                                <small class="text-muted">Agenda, Financeiro, Comissões e Agendamento Online.</small>
                             </div>
-                            <div class="phase-details p-3 bg-dark border-bottom border-secondary">
-                                <p class="small text-muted mb-0">Módulos voltados para prestação de serviços, com foco em agenda multi-profissional e fidelização de clientes.</p>
+                            <div class="phase-details p-4 bg-dark-depth">
+                                <p class="small text-muted mb-0">Gestão de Agenda, Comissões, Agendamento Online e Serviços de Beleza.</p>
                             </div>
                         </div>
 
@@ -136,37 +158,37 @@
             </div>
         </div>
 
-        <!-- Coluna da Direita: Tecnologias e Blindagem -->
+        <!-- Coluna da Direita: Blindagem e Pilar Tecnológico -->
         <div class="col-lg-4">
             <div class="card bg-dark border-secondary rounded-4 shadow mb-4">
                 <div class="card-header bg-transparent border-secondary p-4">
-                    <h5 class="mb-0 text-white fw-bold"><i class="fas fa-shield-halved me-2 text-accent"></i>Blindagem de Dados</h5>
+                    <h5 class="mb-0 text-white fw-bold"><i class="fas fa-shield-halved me-2 text-accent"></i>Blindagem SaaS</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-4">
-                        <label class="text-accent small fw-bold text-uppercase d-block mb-1">Isolamento Multi-Schema</label>
-                        <p class="small text-white-50 mb-0">Cada Domínio (Confecção, Farmácia) possui seu próprio Schema SQL (Ex: <code>domain_confecao.Produtos</code>).</p>
+                        <label class="text-accent extra-small fw-bold text-uppercase d-block mb-1">Isolamento de Dados</label>
+                        <p class="small text-white-50 mb-0">Domínios em Schemas SQL diferentes (Multi-Schema) e filtragem por Tenant (Multi-Tenant).</p>
                     </div>
                     <div class="mb-4">
-                        <label class="text-accent small fw-bold text-uppercase d-block mb-1">Isolamento Multi-Tenant</label>
-                        <p class="small text-white-50 mb-0">Filtros Globais de consulta impedem que o Tenant A veja dados do Tenant B dentro do mesmo Schema.</p>
+                        <label class="text-accent extra-small fw-bold text-uppercase d-block mb-1">Segurança</label>
+                        <p class="small text-white-50 mb-0">Fluxo de convites seguro com expiração e proteção por roles granulares.</p>
                     </div>
                     <div>
-                        <label class="text-accent small fw-bold text-uppercase d-block mb-1">Auditoria Nativa</label>
-                        <p class="small text-white-50 mb-0">Campos de rastreabilidade preenchidos automaticamente via Interceptors.</p>
+                        <label class="text-accent extra-small fw-bold text-uppercase d-block mb-1">Auditoria</label>
+                        <p class="small text-white-50 mb-0">Registro automático de quem alterou o quê e quando através de Interceptors.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="card bg-dark border-secondary rounded-4 shadow">
-                <div class="card-header bg-transparent border-secondary p-4">
-                    <h5 class="mb-0 text-white fw-bold"><i class="fas fa-microchip me-2 text-accent"></i>Tech Stack</h5>
-                </div>
-                <div class="card-body">
-                    <div class="badge bg-secondary mb-2 p-2 w-100 text-start">.NET 9 + Blazor Server</div>
-                    <div class="badge bg-secondary mb-2 p-2 w-100 text-start">Entity Framework Core 9</div>
-                    <div class="badge bg-secondary mb-2 p-2 w-100 text-start">PostgreSQL 17</div>
-                    <div class="badge bg-secondary p-2 w-100 text-start">Bootstrap 5 + FontAwesome</div>
+            <div class="premium-box p-4 bg-gradient-dark border border-secondary border-opacity-25 rounded-4 shadow">
+                <h5 class="mb-3 text-white fw-bold">Tech Stack</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="badge bg-secondary bg-opacity-25 text-white-50">.NET 9</span>
+                    <span class="badge bg-secondary bg-opacity-25 text-white-50">EF Core 9</span>
+                    <span class="badge bg-secondary bg-opacity-25 text-white-50">PostgreSQL 17</span>
+                    <span class="badge bg-secondary bg-opacity-25 text-white-50">Blazor Server</span>
+                    <span class="badge bg-secondary bg-opacity-25 text-white-50">Chart.js</span>
+                    <span class="badge bg-secondary bg-opacity-25 text-white-50">Bootstrap 5</span>
                 </div>
             </div>
         </div>
@@ -174,13 +196,20 @@
 </div>
 
 @code {
-    private bool[] expandedPhases = new bool[5];
+    private bool[] expandedPhases = new bool[10];
+
+    protected override void OnInitialized()
+    {
+        // Fase 2 (Negócio) começa expandida por padrão
+        expandedPhases[2] = true;
+    }
 
     private void TogglePhase(int index)
     {
         expandedPhases[index] = !expandedPhases[index];
     }
 }
+
 <style>
     .text-gradient {
         background: linear-gradient(135deg, #fff 0%, #38bdf8 100%);
@@ -188,12 +217,83 @@
         -webkit-text-fill-color: transparent;
     }
     .text-accent { color: #38bdf8 !important; }
+    .text-accent-soft { color: #7dd3fc !important; }
     .bg-accent { background-color: #38bdf8 !important; }
-    .border-primary { border-color: #38bdf8 !important; }
-    
-    .pulse {
-        animation: pulse-animation 2s infinite;
+    .shadow-accent { box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+    .text-shadow-accent { text-shadow: 0 0 8px rgba(56, 189, 248, 0.5); }
+    .bg-dark-depth { background: #0a0f1d; }
+    .letter-spacing-1 { letter-spacing: 1px; }
+
+    .phase-item { border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease; }
+    .phase-item.expanded { background-color: rgba(255,255,255,0.02); }
+
+    .clickable { cursor: pointer; transition: background 0.2s; }
+    .clickable:hover { background-color: rgba(56, 189, 248, 0.08) !important; }
+
+    .phase-details {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        opacity: 0;
     }
+
+    .expanded .phase-details, .phase-details.show-active {
+        max-height: 1000px;
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+        opacity: 1;
+    }
+
+    /* Granular Breakdown */
+    .etapas-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .etapa-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        background: rgba(255,255,255,0.03);
+        border-radius: 8px;
+        border: 1px solid transparent;
+        transition: all 0.2s;
+    }
+
+    .etapa-item.done {
+        border-color: rgba(5, 150, 105, 0.2);
+        opacity: 0.8;
+    }
+
+    .etapa-item.done .etapa-num { background: #059669; color: white; }
+
+    .etapa-item.doing {
+        background: rgba(56, 189, 248, 0.1);
+        border-color: rgba(56, 189, 248, 0.3);
+    }
+    
+    .etapa-item.doing .etapa-num { background: #38bdf8; color: #0f172a; }
+
+    .etapa-num {
+        font-size: 0.7rem;
+        font-weight: 800;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        margin-right: 12px;
+        flex-shrink: 0;
+    }
+
+    .etapa-txt { font-size: 0.85rem; color: #e2e8f0; }
+
+    .pulse { animation: pulse-animation 2s infinite; }
+    .pulse-border { animation: pulse-border-animation 2s infinite; }
 
     @@keyframes pulse-animation {
         0% { opacity: 0.6; }
@@ -201,40 +301,10 @@
         100% { opacity: 0.6; }
     }
 
-    .list-group-item {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    }
-    
-    .list-group-item:last-child {
-        border-bottom: none !important;
-    }
-
-    .clickable {
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-    .clickable:hover {
-        background-color: rgba(56, 189, 248, 0.15) !important;
-    }
-
-    .phase-details {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out, padding 0.3s ease;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        opacity: 0;
-    }
-
-    .expanded .phase-details {
-        max-height: 200px;
-        padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
-        opacity: 1;
-    }
-
-    .phase-item {
-        transition: all 0.3s ease;
+    @@keyframes pulse-border-animation {
+        0% { border-color: rgba(56, 189, 248, 0.3); }
+        50% { border-color: rgba(56, 189, 248, 0.7); box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+        100% { border-color: rgba(56, 189, 248, 0.3); }
     }
 </style>
 

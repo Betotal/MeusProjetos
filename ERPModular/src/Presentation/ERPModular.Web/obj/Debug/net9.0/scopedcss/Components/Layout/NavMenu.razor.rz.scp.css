@@ -10,6 +10,8 @@
     position: relative;
     z-index: 1100;
     transition: background-color 0.3s ease;
+    overflow: visible !important;
+    /* Garante que o dropdown não seja cortado */
 }
 
 .nav-left[b-0gc4ub2cw0] {
@@ -133,7 +135,18 @@
     padding: 0.5rem;
     min-width: 240px;
     margin-top: 10px !important;
+    position: absolute;
+    z-index: 1000;
     transition: background-color 0.3s ease;
+}
+
+.dropdown-menu-end[b-0gc4ub2cw0] {
+    right: 0;
+    left: auto;
+}
+
+.user-dropdown[b-0gc4ub2cw0] {
+    position: relative;
 }
 
 .dropdown-item[b-0gc4ub2cw0] {
@@ -185,11 +198,12 @@
 .navbar-toggler[b-0gc4ub2cw0] {
     display: none;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    color: white;
+    color: var(--text-primary);
     padding: 5px 10px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .nav-toggler-check[b-0gc4ub2cw0] {
@@ -251,11 +265,22 @@
 
     .nav-right[b-0gc4ub2cw0] {
         margin-left: auto;
-        margin-right: 10px;
+        margin-right: 15px;
     }
 
     .brand-info[b-0gc4ub2cw0] {
-        display: none;
-        /* Esconde texto do usuário no mobile para economizar espaço */
+        display: block;
+        /* Mantém o nome visível conforme solicitado */
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    .company-name[b-0gc4ub2cw0] {
+        font-size: 0.75rem;
+        /* Ajuste leve para caber melhor no mobile */
+    }
+
+    .user-display[b-0gc4ub2cw0] {
+        font-size: 0.65rem;
     }
 }

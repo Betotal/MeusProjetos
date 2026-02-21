@@ -1,0 +1,220 @@
+@page "/Confecao/EstoqueDashboard"
+@rendermode InteractiveServer
+@using ERPModular.Confecao.Domain.Entities
+@using ERPModular.Confecao.Infrastructure.Persistence
+@using ERPModular.Shared.Domain.Interfaces
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.JSInterop
+@inject IDbContextFactory<ConfecaoDbContext> DbFactory
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
+<div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="text-white fw-bold"><i class="fas fa-chart-pie me-2 text-accent"></i>Dashboard de Estoque</h2>
+            <p class="text-white-50 mb-0">Visão geral do inventário e valorização</p>
+        </div>
+        <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" @onclick="LoadData">
+            <i class="fas fa-sync-alt me-1"></i> Atualizar
+        </button>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="d-flex justify-content-center py-5">
+            <div class="spinner-border text-accent" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- KPI Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="premium-card p-4 bg-dark border border-secondary border-opacity-25 h-100">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="icon-box bg-accent bg-opacity-10 text-accent rounded-3 p-3">
+                            <i class="fas fa-dollar-sign fa-lg"></i>
+                        </div>
+                    </div>
+                    <h6 class="text-white-50 extra-small fw-bold text-uppercase">Valor em Estoque</h6>
+                    <h3 class="text-white fw-bold mb-0">@totalValor.ToString("C2")</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="premium-card p-4 bg-dark border border-secondary border-opacity-25 h-100">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="icon-box bg-info bg-opacity-10 text-info rounded-3 p-3">
+                            <i class="fas fa-boxes-stacked fa-lg"></i>
+                        </div>
+                    </div>
+                    <h6 class="text-white-50 extra-small fw-bold text-uppercase">Total de Itens</h6>
+                    <h3 class="text-white fw-bold mb-0">@totalItens.ToString("N0") <small class="fs-6 fw-normal text-white-50">un</small></h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="premium-card p-4 bg-dark border border-secondary border-opacity-25 h-100 border-danger border-opacity-50">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="icon-box bg-danger bg-opacity-10 text-danger rounded-3 p-3">
+                            <i class="fas fa-exclamation-triangle fa-lg"></i>
+                        </div>
+                        @if (alertasCount > 0)
+                        {
+                            <span class="badge bg-danger rounded-pill pulse">CRÍTICO</span>
+                        }
+                    </div>
+                    <h6 class="text-white-50 extra-small fw-bold text-uppercase">Alertas de Reposição</h6>
+                    <h3 class="text-white fw-bold mb-0">@alertasCount</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="premium-card p-4 bg-dark border border-secondary border-opacity-25 h-100">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="icon-box bg-success bg-opacity-10 text-success rounded-3 p-3">
+                            <i class="fas fa-tag fa-lg"></i>
+                        </div>
+                    </div>
+                    <h6 class="text-white-50 extra-small fw-bold text-uppercase">Produtos Ativos</h6>
+                    <h3 class="text-white fw-bold mb-0">@produtosAtivosCount</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <!-- Gráfico de Distribuição -->
+            <div class="col-lg-6">
+                <div class="premium-card p-4 bg-dark border border-secondary border-opacity-25">
+                    <h5 class="text-white fw-bold mb-4">Valor por Categoria</h5>
+                    <div style="height: 300px; position: relative;">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Itens Críticos -->
+            <div class="col-lg-6">
+                <div class="premium-card p-4 bg-dark border border-secondary border-opacity-25 h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="text-white fw-bold mb-0">Itens Críticos (Reposição)</h5>
+                        <a href="/Confecao/Produtos" class="btn btn-link text-accent p-0 text-decoration-none extra-small fw-bold">VER TODOS</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover mb-0">
+                            <thead class="text-white-50 extra-small text-uppercase">
+                                <tr>
+                                    <th>Produto</th>
+                                    <th class="text-center">Tamanho</th>
+                                    <th class="text-end">Saldo</th>
+                                    <th class="text-end">Mínimo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="small">
+                                @if (!itensCriticos.Any())
+                                {
+                                    <tr>
+                                        <td colspan="4" class="text-center py-4 text-white-50">Nenhum item abaixo do estoque mínimo.</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var item in itensCriticos.Take(5))
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="fw-bold">@item.Produto?.Nome</div>
+                                                <div class="extra-small text-white-50">Ref: @item.Produto?.CodigoReferencia</div>
+                                            </td>
+                                            <td class="text-center"><span class="badge bg-secondary">@item.Tamanho</span></td>
+                                            <td class="text-end text-danger fw-bold">@item.SaldoAtual.ToString("N0")</td>
+                                            <td class="text-end text-white-50">@item.EstoqueMinimo.ToString("N0")</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private bool isLoading = true;
+    private decimal totalValor = 0;
+    private decimal totalItens = 0;
+    private int alertasCount = 0;
+    private int produtosAtivosCount = 0;
+    private List<ProdutoVariacao> itensCriticos = new();
+    private Dictionary<string, decimal> valorPorCategoria = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadData();
+        }
+    }
+
+    private async Task LoadData()
+    {
+        isLoading = true;
+        StateHasChanged();
+
+        using var db = await DbFactory.CreateDbContextAsync();
+        
+        var variacoes = await db.ProdutoVariacoes
+            .Include(v => v.Produto)
+            .ToListAsync();
+
+        totalValor = variacoes.Sum(v => v.SaldoAtual * v.PrecoVenda);
+        totalItens = variacoes.Sum(v => v.SaldoAtual);
+        itensCriticos = variacoes.Where(v => v.SaldoAtual <= v.EstoqueMinimo).ToList();
+        alertasCount = itensCriticos.Count;
+        produtosAtivosCount = await db.Produtos.CountAsync(p => p.Ativo);
+
+        // Agrupar por categoria para o gráfico
+        valorPorCategoria = variacoes
+            .GroupBy(v => v.Produto?.Categoria ?? "Sem Categoria")
+            .ToDictionary(g => g.Key, g => g.Sum(v => v.SaldoAtual * v.PrecoVenda));
+
+        isLoading = false;
+        StateHasChanged();
+
+        // Renderizar o gráfico via JS interop
+        if (valorPorCategoria.Any())
+        {
+            await Task.Delay(100); // Garante que o DOM está pronto
+            await JS.InvokeVoidAsync("renderChart", "categoryChart", 
+                valorPorCategoria.Keys.ToArray(), 
+                valorPorCategoria.Values.ToArray());
+        }
+    }
+}
+
+<style>
+    .bg-dark-soft { background-color: #1a2234; }
+    .text-accent { color: #38bdf8; }
+    .bg-accent { background-color: #38bdf8; }
+    
+    .icon-box {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pulse {
+        animation: pulse shadow-pulse 2s infinite;
+    }
+
+    @@keyframes shadow-pulse {
+        0% { box-shadow: 0 0 0 0px rgba(239, 68, 68, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+        100% { box-shadow: 0 0 0 0px rgba(239, 68, 68, 0); }
+    }
+</style>

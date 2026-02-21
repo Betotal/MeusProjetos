@@ -58,8 +58,11 @@
 
                     @if (authContext.User?.GetDomainId() == "confecao" && !authContext.User.IsInRole("SuperAdmin"))
                     {
+                        <NavLink class="nav-link" href="/Confecao/EstoqueDashboard">
+                            <i class="fas fa-chart-line me-1"></i> Dashboard
+                        </NavLink>
                         <NavLink class="nav-link" href="/Confecao/Produtos">
-                            Produtos
+                            <i class="fas fa-boxes-stacked me-1"></i> Produtos
                         </NavLink>
                     }
                 </Authorized>
@@ -101,7 +104,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow-lg animate__animated animate__fadeIn @(isUserMenuOpen ? "show" : "")" style="display: @(isUserMenuOpen ? "block" : "none")">
                         <li class="px-3 py-2 border-bottom border-secondary border-opacity-10 mb-2">
-                            <span class="text-white-50 extra-small fw-bold text-uppercase">Configurações</span>
+                            <span class="text-secondary extra-small fw-bold text-uppercase">Configurações</span>
                         </li>
                         <li>
                             <a class="dropdown-item" href="/Account/Profile" @onclick="CloseUserMenu">
@@ -170,6 +173,21 @@
         Navigation.NavigateTo("/Account/Logout", forceLoad: true);
     }
 
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var savedTheme = await JS.InvokeAsync<string>("getTheme");
+            bool shouldBeDark = savedTheme != "light";
+            
+            if (_isDarkMode != shouldBeDark)
+            {
+                IsDarkMode = shouldBeDark;
+                StateHasChanged();
+            }
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {

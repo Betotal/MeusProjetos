@@ -81,7 +81,7 @@
         <div class="col-lg-8">
             <div class="dashboard-box p-4 h-100 shadow-sm">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="text-white fw-bold mb-0">
+                    <h5 class="fw-bold mb-0 theme-text">
                         <i class="fas fa-chart-line text-accent me-2"></i>Crescimento de Tenants
                     </h5>
                     <span class="badge bg-accent-soft text-accent">Últimos 6 meses</span>
@@ -95,7 +95,7 @@
         <!-- Atividade Recente -->
         <div class="col-lg-4">
             <div class="dashboard-box p-4 h-100 shadow-sm">
-                <h5 class="text-white fw-bold mb-4">
+                <h5 class="fw-bold mb-4 theme-text">
                     <i class="fas fa-bolt text-warning me-2"></i>Recém Chegados
                 </h5>
                 <div class="activity-list">
@@ -106,8 +106,8 @@
                             <div class="activity-item d-flex align-items-center mb-3">
                                 <div class="activity-icon me-3">@rt.NomeFantasia[0]</div>
                                 <div class="flex-grow-1">
-                                    <div class="text-white small fw-bold">@rt.NomeFantasia</div>
-                                    <div class="text-muted extra-small">Admitido em @rt.DataAdesao.ToShortDateString()</div>
+                                    <div class="theme-text small fw-bold">@rt.NomeFantasia</div>
+                                    <div class="text-subtitle extra-small">Admitido em @rt.DataAdesao.ToShortDateString()</div>
                                 </div>
                                 <span class="badge bg-success-soft text-success extra-small">Novo</span>
                             </div>
@@ -121,7 +121,7 @@
     <!-- SEÇÃO DE DETALHES -->
     <div class="detail-section mt-5 animate__animated animate__fadeIn">
         <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
-            <h4 class="text-dark fw-bold mb-0">
+            <h4 class="fw-bold mb-0 theme-text">
                 @if (activeView == "dominios") { <span><i class="fas fa-layer-group text-info me-2"></i>Segmentos Ativos</span> }
                 else if (activeView == "tenants") { <span><i class="fas fa-building text-primary me-2"></i>Empresas Cadastradas</span> }
                 else if (activeView == "usuarios") { <span><i class="fas fa-users text-success me-2"></i>Base de Usuários</span> }
@@ -129,11 +129,11 @@
                 else { <span>Escolha uma categoria acima para detalhar</span> }
             </h4>
             <div class="d-flex gap-2">
-                <button @onclick='() => SetView("tree")' class="btn btn-sm @(activeView == "tree" ? "btn-accent" : "btn-outline-secondary")">
+                <button @onclick='() => SetView("tree")' class="btn btn-sm @(activeView == "tree" ? "btn-accent" : (IsDarkMode ? "btn-outline-light" : "btn-outline-secondary"))">
                     <i class="fas fa-sitemap me-1"></i> Ver Árvore Completa
                 </button>
-                <button @onclick="RefreshData" class="btn btn-sm btn-light border">
-                    <i class="fas fa-sync-alt"></i>
+                <button @onclick="RefreshData" class="btn btn-sm btn-light border theme-card">
+                    <i class="fas fa-sync-alt theme-text"></i>
                 </button>
             </div>
         </div>
@@ -149,24 +149,24 @@
         {
             @if (activeView == "dominios")
             {
-                <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                <div class="table-responsive rounded-3 border theme-card shadow-sm">
                     <table class="table table-hover mb-0">
-                        <thead class="bg-light">
+                        <thead class="theme-table-header">
                             <tr>
-                                <th class="ps-4">Nome do Segmento</th>
-                                <th>Descrição</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">Empresas</th>
+                                <th class="ps-4 text-subtitle">Nome do Segmento</th>
+                                <th class="text-subtitle">Descrição</th>
+                                <th class="text-center text-subtitle">Status</th>
+                                <th class="text-center text-subtitle">Empresas</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var dom in dominiosList)
                             {
                                 <tr>
-                                    <td class="ps-4 fw-bold text-dark">@dom.Nome</td>
-                                    <td class="text-muted">@dom.Descricao</td>
+                                    <td class="ps-4 fw-bold theme-text">@dom.Nome</td>
+                                    <td class="text-subtitle">@dom.Descricao</td>
                                     <td class="text-center"><span class="badge @(dom.Ativo ? "bg-success" : "bg-danger")">@(dom.Ativo ? "Ativo" : "Inativo")</span></td>
-                                    <td class="text-center fw-bold">@(tenantsList?.Count(t => t.DomainId == dom.Id) ?? 0)</td>
+                                    <td class="text-center fw-bold theme-text">@(tenantsList?.Count(t => t.DomainId == dom.Id) ?? 0)</td>
                                 </tr>
                             }
                         </tbody>
@@ -175,25 +175,25 @@
             }
             else if (activeView == "tenants")
             {
-                <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                <div class="table-responsive rounded-3 border theme-card shadow-sm">
                     <table class="table table-hover mb-0">
-                        <thead class="bg-light">
+                        <thead class="theme-table-header">
                             <tr>
-                                <th class="ps-4">Empresa (Tenant)</th>
-                                <th>Segmento</th>
-                                <th class="text-center">Data Adesão</th>
-                                <th class="text-center">Usuários</th>
-                                <th class="text-center">Situação Licença</th>
+                                <th class="ps-4 text-subtitle">Empresa (Tenant)</th>
+                                <th class="text-subtitle">Segmento</th>
+                                <th class="text-center text-subtitle">Data Adesão</th>
+                                <th class="text-center text-subtitle">Usuários</th>
+                                <th class="text-center text-subtitle">Situação Licença</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var tenant in (tenantsList ?? new List<Tenant>()))
                             {
                                 <tr>
-                                    <td class="ps-4 fw-bold text-dark">@tenant.NomeFantasia</td>
+                                    <td class="ps-4 fw-bold theme-text">@tenant.NomeFantasia</td>
                                     <td><span class="badge bg-info bg-opacity-10 text-info border-info">@(dominiosList?.FirstOrDefault(d => d.Id == tenant.DomainId)?.Nome ?? "N/A")</span></td>
-                                    <td class="text-center text-muted">@tenant.DataAdesao.ToShortDateString()</td>
-                                    <td class="text-center fw-bold">@(usersList?.Count(u => u.TenantId == tenant.Id) ?? 0)</td>
+                                    <td class="text-center text-subtitle">@tenant.DataAdesao.ToShortDateString()</td>
+                                    <td class="text-center fw-bold theme-text">@(usersList?.Count(u => u.TenantId == tenant.Id) ?? 0)</td>
                                     <td class="text-center">
                                         @{
                                             var status = GetCachedStatus(tenant.Id);
@@ -208,24 +208,24 @@
             }
             else if (activeView == "usuarios")
             {
-                <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                <div class="table-responsive rounded-3 border theme-card shadow-sm">
                     <table class="table table-hover mb-0">
-                        <thead class="bg-light">
+                        <thead class="theme-table-header">
                             <tr>
-                                <th class="ps-4">Usuário</th>
-                                <th>Empresa</th>
-                                <th>E-mail</th>
-                                <th class="text-center">Onboarding</th>
-                                <th class="text-center">Ações</th>
+                                <th class="ps-4 text-subtitle">Usuário</th>
+                                <th class="text-subtitle">Empresa</th>
+                                <th class="text-subtitle">E-mail</th>
+                                <th class="text-center text-subtitle">Onboarding</th>
+                                <th class="text-center text-subtitle">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var user in (usersList ?? new List<ERPUser>()))
                             {
                                 <tr>
-                                    <td class="ps-4 fw-bold text-dark">@user.FullName</td>
-                                    <td>@(tenantsList?.FirstOrDefault(t => t.Id == user.TenantId)?.NomeFantasia ?? "N/A")</td>
-                                    <td class="text-muted">@user.Email</td>
+                                    <td class="ps-4 fw-bold theme-text">@user.FullName</td>
+                                    <td class="theme-text">@(tenantsList?.FirstOrDefault(t => t.Id == user.TenantId)?.NomeFantasia ?? "N/A")</td>
+                                    <td class="text-subtitle">@user.Email</td>
                                     <td class="text-center">
                                         @if (user.InvitationAccepted) { <i class="fas fa-check-circle text-success" title="Concluído"></i> }
                                         else { <i class="fas fa-hourglass-half text-warning" title="Pendente"></i> }
@@ -254,15 +254,15 @@
             }
             else if (activeView == "convites")
             {
-                <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                <div class="table-responsive rounded-3 border theme-card shadow-sm">
                     <table class="table table-hover mb-0">
-                        <thead class="bg-light">
+                        <thead class="theme-table-header">
                             <tr>
-                                <th class="ps-4">Convidado</th>
-                                <th>Empresa</th>
-                                <th>E-mail</th>
-                                <th class="text-center">Data Convite</th>
-                                <th class="text-center">Ações</th>
+                                <th class="ps-4 text-subtitle">Convidado</th>
+                                <th class="text-subtitle">Empresa</th>
+                                <th class="text-subtitle">E-mail</th>
+                                <th class="text-center text-subtitle">Data Convite</th>
+                                <th class="text-center text-subtitle">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -271,7 +271,7 @@
                                 @foreach (var invite in pendingInvites)
                                 {
                                     <tr>
-                                        <td class="ps-4 fw-bold text-dark">@invite.FullName</td>
+                                        <td class="ps-4 fw-bold theme-text">@invite.FullName</td>
                                         <td>@(tenantsList?.FirstOrDefault(t => t.Id == invite.TenantId)?.NomeFantasia ?? "N/A")</td>
                                         <td class="text-muted">@invite.Email</td>
                                         <td class="text-center">@invite.CreatedAt.ToShortDateString()</td>
@@ -297,7 +297,7 @@
             }
             else if (activeView == "tree")
             {
-                <div class="tree-view border rounded-4 bg-white p-3 p-md-4 shadow-sm">
+                <div class="tree-view border rounded-4 theme-card p-3 p-md-4 shadow-sm">
                     @foreach (var dom in dominiosList)
                     {
                         <div class="tree-node domain-node mb-3">
@@ -307,7 +307,7 @@
                                     <i class="fas fa-layer-group"></i>
                                 </div>
                                 <div class="node-info flex-grow-1">
-                                    <span class="fw-bold text-dark d-block">@dom.Nome</span>
+                                    <span class="fw-bold theme-text d-block">@dom.Nome</span>
                                     <span class="text-muted small">@dom.Descricao</span>
                                 </div>
                                 <span class="badge rounded-pill bg-light text-dark border">@(tenantsList?.Count(t => t.DomainId == dom.Id) ?? 0) empresas</span>
@@ -325,7 +325,7 @@
                                                     <i class="fas fa-building"></i>
                                                 </div>
                                                 <div class="node-info flex-grow-1">
-                                                    <span class="fw-semibold text-dark">@tenant.NomeFantasia</span>
+                                                    <span class="fw-semibold theme-text">@tenant.NomeFantasia</span>
                                                     <span class="badge extra-small @(GetStatusClass(GetCachedStatus(tenant.Id))) ms-2">@GetStatusLabel(GetCachedStatus(tenant.Id))</span>
                                                 </div>
                                                 <span class="badge bg-white text-muted border py-1 px-2">@(usersList?.Count(u => u.TenantId == tenant.Id) ?? 0)</span>
@@ -341,7 +341,7 @@
                                                                 <i class="fas fa-user"></i>
                                                             </div>
                                                             <div class="user-info flex-grow-1">
-                                                                <span class="text-dark small fw-medium">@user.FullName</span>
+                                                                <span class="theme-text small fw-medium">@user.FullName</span>
                                                                 @if (user.IsActive && user.ResetPasswordRequested)
                                                                 {
                                                                     <span class="badge bg-warning text-dark extra-small ms-2 animate__animated animate__flash animate__infinite">SOLICITOU SENHA</span>
@@ -377,39 +377,31 @@
 </div>
 
 <style>
-    :root {
-        --accent: #38bdf8;
-        --slate: #1e293b;
-        --border: #e2e8f0;
-    }
-    .text-accent { color: var(--accent) !important; }
-    .btn-accent { background: var(--accent); color: #0f172a; border: none; font-weight: 600; }
-    .bg-accent-soft { background: rgba(56, 189, 248, 0.1); }
-    .bg-info-soft { background: rgba(13, 202, 240, 0.1); }
-    .bg-primary-soft { background: rgba(13, 110, 253, 0.1); }
-    .bg-success-soft { background: rgba(25, 135, 84, 0.1); }
-    .bg-warning-soft { background: rgba(255, 193, 7, 0.1); }
-    
     .kpi-card { 
-        background: #1e293b; 
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: var(--bg-secondary); 
+        border: 1px solid var(--border-color);
         border-radius: 16px; 
         cursor: pointer; 
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
     .kpi-card.active { 
-        background: #f1f5f9; /* Cinza claro suave */
+        background: var(--accent);
         border: 1px solid var(--accent);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.3);
+        transform: translateY(-8px);
     }
-    .kpi-card.active .kpi-number { color: #0f172a !important; }
-    .kpi-card.active .kpi-label { color: #475569 !important; opacity: 1; }
-    .kpi-card.active .kpi-icon-container { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
+    .kpi-card:hover:not(.active) {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.15);
+        border-color: var(--accent);
+    }
+    .kpi-card.active .kpi-number, .kpi-card.active .kpi-label { color: #0f172a !important; }
+    .kpi-card.active .kpi-icon-container { background: rgba(255, 255, 255, 0.2); color: #0f172a; }
 
-    .kpi-number { color: #ffffff; font-size: 1.85rem; font-weight: 800; line-height: 1.1; transition: all 0.3s; }
+    .kpi-number { color: var(--text-primary); font-size: 1.85rem; font-weight: 800; line-height: 1.1; transition: all 0.3s; }
     .kpi-label { 
-        color: #94a3b8; 
+        color: var(--text-secondary); 
         font-size: 0.75rem; 
         font-weight: 700; 
         text-transform: uppercase; 
@@ -420,30 +412,11 @@
     }
     .kpi-icon-container { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
     
-    .dashboard-box {
-        background: #1e293b;
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .activity-icon {
-        width: 36px;
-        height: 36px;
-        background: rgba(56, 189, 248, 0.1);
-        color: var(--accent);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-    }
-
-    .node-header { cursor: pointer; background: #f8fafc; margin-bottom: 2px; }
-    .node-header:hover { background: #f1f5f9; }
-    .border-start { border-left: 2px solid var(--border) !important; }
-    .extra-small { font-size: 0.7rem; }
-    .btn-xs { padding: 0.1rem 0.3rem; font-size: 0.75rem; line-height: 1; border-radius: 4px; border: none; background: transparent; }
-    .btn-xs:hover:not(:disabled) { background: rgba(0,0,0,0.05); }
+    .node-header { cursor: pointer; background: var(--bg-primary); margin-bottom: 2px; transition: all 0.2s; }
+    .node-header:hover { background: var(--bg-secondary); }
+    .border-start { border-left: 2px solid var(--border-color) !important; }
+    .btn-xs { padding: 0.1rem 0.3rem; font-size: 0.75rem; line-height: 1; border-radius: 4px; border: none; background: transparent; color: var(--text-primary); }
+    .btn-xs:hover:not(:disabled) { background: rgba(56,189,248,0.1); }
 </style>
 
 @code {
@@ -461,6 +434,22 @@
     private string activeView = "tree";
     private HashSet<string> expandedNodes = new();
     private Dictionary<string, ERPModular.Web.Services.LicenseStatus> licenseCache = new();
+    private bool IsDarkMode { get; set; } = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var theme = await JSRuntime.InvokeAsync<string>("getTheme");
+            IsDarkMode = theme == "dark";
+            StateHasChanged();
+        }
+
+        if (firstRender && tenantsList != null)
+        {
+            await RenderCharts();
+        }
+    }
 
     private ERPModular.Web.Services.LicenseStatus GetCachedStatus(string tenantId) => 
         licenseCache.TryGetValue(tenantId, out var s) ? s : ERPModular.Web.Services.LicenseStatus.Active;
@@ -482,14 +471,6 @@
     protected override async Task OnInitializedAsync()
     {
         await RefreshData();
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender && tenantsList != null)
-        {
-            await RenderCharts();
-        }
     }
 
     private async Task RenderCharts()

@@ -10,68 +10,143 @@
 @inject NavigationManager Navigation
 @inject ERPModular.Web.Services.SaaSControlService SaaSControl
 
-
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="text-white fw-bold"><i class="fas fa-boxes-stacked me-2 text-accent"></i>Produtos (Confecção)</h2>
         <button class="btn btn-accent shadow-sm" @onclick="ShowAddForm" disabled="@IsReadOnly">
             <i class="fas fa-plus me-1"></i> Novo Produto
         </button>
-
     </div>
 
     @if (!string.IsNullOrEmpty(errorMessage))
     {
-        <div class="alert alert-danger alert-dismissible fade show mb-4 rounded-3" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show mb-4 rounded-3 shadow-sm border-0" style="background: rgba(220, 38, 38, 0.15); color: #fca5a5;" role="alert">
             <i class="fas fa-exclamation-triangle me-2"></i> @errorMessage
-            <button type="button" class="btn-close" @onclick='() => errorMessage = ""'></button>
+            <button type="button" class="btn-close btn-close-white" @onclick='() => errorMessage = ""'></button>
         </div>
     }
 
     @if (showForm)
     {
-        <div class="card bg-dark border-secondary mb-4 shadow-lg rounded-4 overflow-hidden animate__animated animate__fadeInDown">
-            <div class="card-header bg-accent text-dark fw-bold">
-                @(editingProduct.Id == Guid.Empty ? "Cadastrar Novo Produto" : "Editar Produto")
-                @if (IsReadOnly) { <span class="badge bg-danger ms-2">SOMENTE LEITURA</span> }
+        <div class="card bg-dark border-secondary mb-4 shadow-lg rounded-4 overflow-hidden animate__animated animate__fadeInDown border-opacity-25">
+            <div class="card-header bg-accent text-dark fw-bold d-flex justify-content-between align-items-center">
+                <span>
+                    @(editingProduct.Id == Guid.Empty ? "Cadastrar Novo Produto" : "Editar Produto")
+                    @if (IsReadOnly) { <span class="badge bg-danger ms-2">SOMENTE LEITURA</span> }
+                </span>
+                <i class="fas fa-shirt opacity-50"></i>
             </div>
 
             <div class="card-body p-4">
                 <EditForm Model="editingProduct" OnValidSubmit="HandleSave">
                     <DataAnnotationsValidator />
                     <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="text-white-50 small mb-1">Nome do Produto</label>
-                            <InputText @bind-Value="editingProduct.Nome" class="form-control bg-dark text-white border-secondary" placeholder="Ex: Camiseta Básica Masculina" />
+                        <div class="col-md-5">
+                            <label class="text-white-50 small mb-1 fw-bold">NOME DO PRODUTO</label>
+                            <InputText @bind-Value="editingProduct.Nome" class="form-control bg-dark text-white border-secondary custom-input" placeholder="Ex: Camiseta Básica Masculina" />
                             <ValidationMessage For="@(() => editingProduct.Nome)" class="text-danger small" />
                         </div>
                         <div class="col-md-3">
-                            <label class="text-white-50 small mb-1">Referência</label>
-                            <InputText @bind-Value="editingProduct.Referencia" class="form-control bg-dark text-white border-secondary" placeholder="Ex: REF-001" />
+                            <label class="text-white-50 small mb-1 fw-bold">REFERÊNCIA</label>
+                            <InputText @bind-Value="editingProduct.CodigoReferencia" class="form-control bg-dark text-white border-secondary custom-input" placeholder="Ex: REF-001" />
+                            <ValidationMessage For="@(() => editingProduct.CodigoReferencia)" class="text-danger small" />
                         </div>
-                        <div class="col-md-3">
-                            <label class="text-white-50 small mb-1">Preço (R$)</label>
-                            <InputNumber @bind-Value="editingProduct.Preco" class="form-control bg-dark text-white border-secondary" />
+                        <div class="col-md-4">
+                            <label class="text-white-50 small mb-1 fw-bold">CATEGORIA</label>
+                            <InputText @bind-Value="editingProduct.Categoria" class="form-control bg-dark text-white border-secondary custom-input" placeholder="Ex: Uniformes" />
+                        </div>
+                        
+                        <div class="col-12 mt-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <h6 class="text-accent mb-0 fw-bold"><i class="fas fa-layer-group me-2"></i>GRADE DE TAMANHOS (VARIAÇÕES)</h6>
+                                <hr class="flex-grow-1 ms-3 border-secondary opacity-25">
+                            </div>
+                            
+                            <!-- Lista de Variações em Cards Pequenos -->
+                            <div class="d-flex flex-wrap gap-3 mb-3">
+                                @foreach (var v in editingProduct.Variacoes)
+                                {
+                                    <div class="variation-card animate__animated animate__fadeIn">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <span class="badge bg-accent text-dark fw-bold fs-6">@v.Tamanho</span>
+                                            <button type="button" class="btn-remove-var" @onclick="() => RemoveVariacao(v)">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                        <div class="small-info">
+                                            <div class="text-white-50">Preço: <span class="text-white fw-bold">R$ @v.PrecoVenda.ToString("N2")</span></div>
+                                            <div class="text-white-50">Mínimo: <span class="text-white">@v.EstoqueMinimo</span></div>
+                                            <div class="text-white-50">Saldo: <span class="text-accent fw-bold">@v.SaldoAtual</span></div>
+                                        </div>
+                                    </div>
+                                }
+                                
+                                <!-- Card de Adição -->
+                                <div class="variation-card border-dashed d-flex flex-column justify-content-center align-items-center p-0" style="min-height: 110px;">
+                                    <button type="button" class="btn btn-link text-accent text-decoration-none w-100 h-100 d-flex flex-column align-items-center justify-content-center" @onclick="ShowAddVariacaoModal">
+                                        <i class="fas fa-plus-circle fs-4 mb-1"></i>
+                                        <span class="small fw-bold">Adicionar Tamanho</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="d-flex justify-content-end mt-4 gap-2">
-                        <button type="button" class="btn btn-outline-secondary" @onclick="CancelForm">Cancelar</button>
-                        <button type="submit" class="btn btn-accent px-4 fw-bold" disabled="@IsReadOnly">Salvar</button>
-
+                        <button type="button" class="btn btn-outline-secondary px-4 hov-dark" @onclick="CancelForm">Cancelar</button>
+                        <button type="submit" class="btn btn-accent px-5 fw-bold shadow-sm" disabled="@IsReadOnly">
+                            <i class="fas fa-check me-2"></i> SALVAR PRODUTO COMPLETO
+                        </button>
                     </div>
                 </EditForm>
             </div>
         </div>
     }
 
-    <div class="card bg-dark border-secondary shadow rounded-4 overflow-hidden">
+    <!-- Modal Simples p/ Adicionar Variante -->
+    @if (showVarModal)
+    {
+        <div class="custom-modal-backdrop">
+            <div class="custom-modal-content animate__animated animate__zoomIn animate__faster">
+                <div class="card bg-dark border-accent shadow-lg">
+                    <div class="card-header bg-accent text-dark fw-bold">Adicionar Tamanho à Grade</div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <label class="text-white-50 small mb-1">Tamanho (Ex: P, M, 42)</label>
+                                <input type="text" @bind="newVar.Tamanho" class="form-control bg-dark text-white border-secondary" autofocus />
+                            </div>
+                            <div class="col-6">
+                                <label class="text-white-50 small mb-1">Preço Venda (R$)</label>
+                                <input type="number" step="0.01" @bind="newVar.PrecoVenda" class="form-control bg-dark text-white border-secondary" />
+                            </div>
+                            <div class="col-6">
+                                <label class="text-white-50 small mb-1">Estoque Mínimo</label>
+                                <input type="number" @bind="newVar.EstoqueMinimo" class="form-control bg-dark text-white border-secondary" />
+                            </div>
+                            <div class="col-6">
+                                <label class="text-white-50 small mb-1">Saldo Inicial</label>
+                                <input type="number" @bind="newVar.SaldoAtual" class="form-control bg-dark text-white border-secondary" />
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end mt-4 gap-2">
+                            <button type="button" class="btn btn-outline-secondary" @onclick="() => showVarModal = false">Cancelar</button>
+                            <button type="button" class="btn btn-accent" @onclick="AddVariacaoToList">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="card theme-card shadow rounded-4 overflow-hidden border-opacity-25">
         <div class="table-responsive">
             <table class="table table-dark table-hover mb-0">
                 <thead class="bg-secondary bg-opacity-10 text-white-50 small text-uppercase">
                     <tr>
-                        <th class="ps-4">Produto</th>
+                        <th class="ps-4" style="width: 40%;">Produto</th>
                         <th>Referência</th>
-                        <th>Preço</th>
+                        <th>Grade / Tamanhos</th>
                         <th class="text-end pe-4">Ações</th>
                     </tr>
                 </thead>
@@ -79,7 +154,7 @@
                     @if (produtos == null)
                     {
                         <tr>
-                            <td colspan="5" class="text-center py-5">
+                            <td colspan="4" class="text-center py-5">
                                 <div class="spinner-border text-accent" role="status"></div>
                             </td>
                         </tr>
@@ -87,7 +162,7 @@
                     else if (!produtos.Any())
                     {
                         <tr>
-                            <td colspan="5" class="text-center py-5 text-white-50 italic">
+                            <td colspan="4" class="text-center py-5 text-white-50 italic">
                                 <i class="fas fa-info-circle me-1"></i> Nenhum produto cadastrado para este Tenant.
                             </td>
                         </tr>
@@ -99,12 +174,26 @@
                             <tr>
                                 <td class="ps-4">
                                     <div class="fw-bold">@p.Nome</div>
-                                    <small class="text-white-50">Criado em: @p.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</small>
+                                    <small class="text-white-50">@p.Categoria • Criado em @p.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy")</small>
                                 </td>
-                                <td><span class="badge bg-secondary">@p.Referencia</span></td>
-                                <td class="text-accent fw-bold">R$ @p.Preco.ToString("N2")</td>
+                                <td><span class="badge bg-secondary border border-secondary border-opacity-50">@p.CodigoReferencia</span></td>
+                                <td>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        @if (p.Variacoes.Any())
+                                        {
+                                            @foreach (var v in p.Variacoes.OrderBy(x => x.Tamanho))
+                                            {
+                                                <span class="badge bg-dark border border-accent border-opacity-25 extra-small">@v.Tamanho</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span class="text-white-50 small italic">Sem grade</span>
+                                        }
+                                    </div>
+                                </td>
                                 <td class="text-end pe-4">
-                                    <button class="btn btn-sm btn-outline-light border-0" title="Editar" @onclick="() => EditProduct(p)">
+                                    <button class="btn btn-sm btn-outline-light border-0 action-btn" title="Editar" @onclick="() => EditProduct(p)">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 </td>
@@ -119,20 +208,64 @@
 
 <style>
     .text-accent { color: #38bdf8 !important; }
-    .btn-accent { background: #38bdf8; color: #0f172a; border: none; font-weight: 600; }
-    .btn-accent:hover { background: #0ea5e9; color: #fff; }
+    .btn-accent { background: #38bdf8; color: #0f172a; border: none; font-weight: 600; transition: all 0.2s; }
+    .btn-accent:hover { background: #0ea5e9; color: #fff; transform: translateY(-1px); }
+    .btn-accent:disabled { background: #475569; color: #94a3b8; }
     .bg-accent { background-color: #38bdf8 !important; }
     .card { transition: all 0.3s ease; }
     .table-hover tbody tr:hover { background-color: rgba(56, 189, 248, 0.05); }
+    
+    .custom-input { transition: all 0.2s; }
+    .custom-input:focus { border-color: #38bdf8; box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.1); }
+
+    .variation-card {
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 12px;
+        min-width: 140px;
+        position: relative;
+        transition: all 0.2s;
+    }
+    .variation-card:hover { border-color: #38bdf8; transform: translateY(-2px); }
+    .variation-card.border-dashed { border-style: dashed; border-width: 2px; }
+    
+    .btn-remove-var {
+        background: transparent;
+        border: none;
+        color: rgba(239, 68, 68, 0.6);
+        font-size: 0.8rem;
+        transition: color 0.2s;
+        padding: 0;
+    }
+    .btn-remove-var:hover { color: #ef4444; }
+
+    .small-info { font-size: 0.75rem; line-height: 1.4; }
+    .extra-small { font-size: 0.65rem; padding: 0.25em 0.5em; }
+    
+    .action-btn { transition: all 0.2s; border-radius: 8px; }
+    .action-btn:hover { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
+
+    .custom-modal-backdrop {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(4px);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 1050;
+    }
+    .custom-modal-content { width: 100%; max-width: 450px; padding: 15px; }
+    .hov-dark:hover { background: rgba(255,255,255,0.05); }
 </style>
 
 @code {
     private List<Produto>? produtos;
     private bool showForm = false;
+    private bool showVarModal = false;
     private Produto editingProduct = new();
+    private ProdutoVariacao newVar = new();
     private string errorMessage = "";
     private bool IsReadOnly = false;
-
 
     protected override async Task OnInitializedAsync()
     {
@@ -140,8 +273,6 @@
         var authState = await AuthStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
         
-        // Validação de Segurança: Se não for do domínio 'confecao', bloqueia acesso.
-        // SuperAdmin tem acesso irrestrito para gestão.
         if (execContext.DomainId != "confecao" && !user.IsInRole("SuperAdmin"))
         {
             Navigation.NavigateTo("/Account/AccessDenied?reason=wrong_domain");
@@ -156,7 +287,6 @@
             IsReadOnly = (status == ERPModular.Web.Services.LicenseStatus.ReadOnly);
         }
 
-
         await LoadProdutos();
     }
 
@@ -165,7 +295,10 @@
         try
         {
             using var context = await DbFactory.CreateDbContextAsync();
-            produtos = await context.Produtos.OrderByDescending(p => p.CreatedAt).ToListAsync();
+            produtos = await context.Produtos
+                .Include(p => p.Variacoes)
+                .OrderByDescending(p => p.CreatedAt)
+                .ToListAsync();
         }
         catch (Exception ex)
         {
@@ -176,20 +309,50 @@
 
     private void ShowAddForm()
     {
-        editingProduct = new Produto(); // BaseEntity já gera Guid.NewGuid() automaticamente
+        editingProduct = new Produto();
+        editingProduct.Variacoes = new List<ProdutoVariacao>();
         showForm = true;
     }
 
     private void EditProduct(Produto p)
     {
+        // Clone para edição segura
         editingProduct = new Produto 
         { 
             Id = p.Id, 
             Nome = p.Nome, 
-            Referencia = p.Referencia, 
-            Preco = p.Preco 
+            CodigoReferencia = p.CodigoReferencia, 
+            Categoria = p.Categoria,
+            Descricao = p.Descricao,
+            Variacoes = p.Variacoes.Select(v => new ProdutoVariacao {
+                Id = v.Id,
+                ProdutoId = v.ProdutoId,
+                Tamanho = v.Tamanho,
+                PrecoVenda = v.PrecoVenda,
+                SaldoAtual = v.SaldoAtual,
+                EstoqueMinimo = v.EstoqueMinimo
+            }).ToList()
         };
         showForm = true;
+    }
+
+    private void ShowAddVariacaoModal()
+    {
+        newVar = new ProdutoVariacao { PrecoVenda = 0, EstoqueMinimo = 5 };
+        showVarModal = true;
+    }
+
+    private void AddVariacaoToList()
+    {
+        if (string.IsNullOrWhiteSpace(newVar.Tamanho)) return;
+        
+        editingProduct.Variacoes.Add(newVar);
+        showVarModal = false;
+    }
+
+    private void RemoveVariacao(ProdutoVariacao v)
+    {
+        editingProduct.Variacoes.Remove(v);
     }
 
     private async Task HandleSave()
@@ -199,48 +362,41 @@
         {
             if (IsReadOnly)
             {
-                errorMessage = "Erro: licenciamento expirado. Acesso restrito a consulta.";
-                return;
-            }
-
-            // Diagnóstico: verificar contexto de execução
-            var execContext = ExecutionContextAccessor.GetContext();
-            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
-            var user = authState.User;
-            
-            Console.WriteLine($"[PRODUTO] DomainId='{execContext.DomainId}' TenantId='{execContext.TenantId}' EmpresaId='{execContext.EmpresaId}'");
-
-            if (execContext.DomainId != "confecao" && !user.IsInRole("SuperAdmin"))
-            {
-                errorMessage = "Erro: Você não tem permissão para gravar dados neste domínio.";
-                return;
-            }
-
-            if (string.IsNullOrEmpty(execContext.TenantId))
-            {
-                errorMessage = "Erro: contexto do usuário inválido (TenantId vazio). Faça logout e login novamente.";
+                errorMessage = "Erro: licenciamento expirado.";
                 return;
             }
 
             using var context = await DbFactory.CreateDbContextAsync();
 
-            // Verifica se é novo (Id não foi ainda persistido) ou edição
             var existente = await context.Produtos
+                .Include(p => p.Variacoes)
                 .IgnoreQueryFilters()
                 .FirstOrDefaultAsync(p => p.Id == editingProduct.Id);
 
             if (existente == null)
             {
-                // NOVO PRODUTO — Id já foi gerado pelo BaseEntity
+                // NOVO PRODUTO
+                // Como Variacoes é uma coleção navegável, o EF salvará tudo em cascata.
                 context.Produtos.Add(editingProduct);
             }
             else
             {
-                // EDIÇÃO
+                // EDIÇÃO DE CABEÇALHO
                 existente.Nome = editingProduct.Nome;
-                existente.Referencia = editingProduct.Referencia;
-                existente.Preco = editingProduct.Preco;
-                context.Produtos.Update(existente);
+                existente.CodigoReferencia = editingProduct.CodigoReferencia;
+                existente.Categoria = editingProduct.Categoria;
+                existente.Descricao = editingProduct.Descricao;
+
+                // SINCRONIZAÇÃO DE VARIAÇÕES (Simplificada: Remove o que não está na lista nova e add novos)
+                // Para uma gestão mais complexa (como manter IDs), precisaríamos de lógica de merge.
+                // Aqui vamos limpar e re-adicionar para agilizar o CRUD inicial.
+                context.ProdutoVariacoes.RemoveRange(existente.Variacoes);
+                foreach (var v in editingProduct.Variacoes)
+                {
+                    v.Id = Guid.NewGuid(); // Novos IDs para o merge simplificado
+                    v.ProdutoId = existente.Id;
+                    existente.Variacoes.Add(v);
+                }
             }
 
             await context.SaveChangesAsync();
@@ -249,8 +405,7 @@
         }
         catch (Exception ex)
         {
-            errorMessage = $"Erro ao salvar produto: {ex.InnerException?.Message ?? ex.Message}";
-            Console.WriteLine($"ERRO AO SALVAR PRODUTO: {ex}");
+            errorMessage = $"Erro ao salvar: {ex.InnerException?.Message ?? ex.Message}";
         }
     }
 

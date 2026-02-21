@@ -11,6 +11,7 @@ public abstract class BaseEntity : IAuditEntity
     public Guid Id { get; set; } = Guid.NewGuid();
     
     // Isolamento
+    public string DomainId { get; set; } = string.Empty;
     public string TenantId { get; set; } = string.Empty;
     public string EmpresaId { get; set; } = string.Empty;
     

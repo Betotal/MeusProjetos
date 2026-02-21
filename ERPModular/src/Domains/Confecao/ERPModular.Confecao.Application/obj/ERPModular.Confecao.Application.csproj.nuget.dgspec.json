@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\curso\\meusprojetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\ERPModular.Confecao.Application.csproj": {}
+    "D:\\Curso\\MeusProjetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\ERPModular.Confecao.Application.csproj": {}
   },
   "projects": {
-    "D:\\curso\\meusprojetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\ERPModular.Confecao.Application.csproj": {
+    "D:\\Curso\\MeusProjetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\ERPModular.Confecao.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\curso\\meusprojetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\ERPModular.Confecao.Application.csproj",
+        "projectUniqueName": "D:\\Curso\\MeusProjetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\ERPModular.Confecao.Application.csproj",
         "projectName": "ERPModular.Confecao.Application",
-        "projectPath": "D:\\curso\\meusprojetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\ERPModular.Confecao.Application.csproj",
+        "projectPath": "D:\\Curso\\MeusProjetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\ERPModular.Confecao.Application.csproj",
         "packagesPath": "C:\\Users\\betot\\.nuget\\packages\\",
-        "outputPath": "D:\\curso\\meusprojetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\obj\\",
+        "outputPath": "D:\\Curso\\MeusProjetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\betot\\AppData\\Roaming\\NuGet\\NuGet.Config"

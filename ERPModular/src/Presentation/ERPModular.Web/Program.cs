@@ -42,6 +42,10 @@ builder.Services.AddDbContextFactory<ERPModular.Confecao.Infrastructure.Persiste
 });
 builder.Services.AddScoped(p => p.GetRequiredService<IDbContextFactory<ERPModular.Confecao.Infrastructure.Persistence.ConfecaoDbContext>>().CreateDbContext());
 
+// Serviços de Domínio - Confecção
+builder.Services.AddScoped<ERPModular.Confecao.Application.Interfaces.IEstoqueService, ERPModular.Confecao.Infrastructure.Services.EstoqueService>();
+builder.Services.AddScoped<ERPModular.Confecao.Application.Interfaces.IPrecoService, ERPModular.Confecao.Infrastructure.Services.PrecoService>();
+
 // 2. Configuração do ASP.NET Core Identity
 builder.Services.AddIdentity<ERPUser, IdentityRole>(options => {
     options.Password.RequireDigit = true;
@@ -99,8 +103,8 @@ app.MapRazorComponents<App>()
 // Executa migrações automáticas e o Seed de dados
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<SharedDbContext>();
-    await dbContext.Database.MigrateAsync();
+    var sharedContext = scope.ServiceProvider.GetRequiredService<SharedDbContext>();
+    await sharedContext.Database.MigrateAsync();
     await DbInitializer.SeedData(app.Services);
 }
 

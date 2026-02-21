@@ -3343,8 +3343,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\curso\\meusprojetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Infrastructure\\ERPModular.Confecao.Infrastructure.csproj": {
-              "projectPath": "D:\\curso\\meusprojetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Infrastructure\\ERPModular.Confecao.Infrastructure.csproj"
+            "D:\\Curso\\MeusProjetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Infrastructure\\ERPModular.Confecao.Infrastructure.csproj": {
+              "projectPath": "D:\\Curso\\MeusProjetos\\ERPModular\\src\\Domains\\Confecao\\ERPModular.Confecao.Infrastructure\\ERPModular.Confecao.Infrastructure.csproj"
             },
             "D:\\curso\\meusprojetos\\ERPModular\\src\\Shared\\ERPModular.Shared.Application\\ERPModular.Shared.Application.csproj": {
               "projectPath": "D:\\curso\\meusprojetos\\ERPModular\\src\\Shared\\ERPModular.Shared.Application\\ERPModular.Shared.Application.csproj"

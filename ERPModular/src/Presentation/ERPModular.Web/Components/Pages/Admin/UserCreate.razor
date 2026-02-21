@@ -15,10 +15,10 @@
 
 
 <div class="user-create-container">
-    <div class="user-create-card">
-<div class="header mb-4 animate__animated animate__fadeInDown">
-            <h3 class="text-info"><i class="fas fa-user-plus me-2"></i>Convidar Membro</h3>
-            <p class="text-white-50">Cadastre o funcionário e envie o link de ativação.</p>
+    <div class="user-create-card theme-card border-0 shadow-lg p-4 p-md-5 rounded-4">
+        <div class="header mb-4 pb-2 border-bottom">
+            <h3 class="theme-text-header fw-bold mb-1"><i class="fas fa-user-plus text-accent me-2"></i>Convidar Membro</h3>
+            <p class="text-subtitle">Cadastre o funcionário e envie o link de ativação.</p>
         </div>
 
         @if (InviteLinkGenerated)
@@ -28,22 +28,22 @@
                     <div class="success-icon mb-3">
                         <i class="fas fa-check-circle fa-4x text-success"></i>
                     </div>
-                    <h4>Convite Criado!</h4>
-                    <p class="text-white-50">Compartilhe o link abaixo com <strong>@Model.FullName</strong></p>
+                    <h4 class="theme-text fw-bold">Convite Criado!</h4>
+                    <p class="text-subtitle">Compartilhe o link abaixo com <strong>@Model.FullName</strong></p>
                 </div>
 
-                <div class="link-box p-3 rounded-4 bg-black bg-opacity-50 border border-secondary mb-4">
+                <div class="link-box p-3 rounded-4 bg-primary bg-opacity-10 border border-info border-opacity-25 mb-4">
                     <code class="text-accent small text-break">@InviteLink</code>
                 </div>
 
                 <div class="d-grid gap-3">
-                    <button class="btn btn-success btn-lg py-3 rounded-4" @onclick="SendWhatsApp">
+                    <button class="btn btn-success btn-lg py-3 rounded-4 shadow-sm" @onclick="SendWhatsApp">
                         <i class="fab fa-whatsapp me-2"></i> Enviar via WhatsApp
                     </button>
-                    <button class="btn btn-outline-light btn-lg py-3 rounded-4" @onclick="CopyLink">
+                    <button class="btn @(IsDarkMode ? "btn-outline-light" : "btn-outline-secondary") btn-lg py-3 rounded-4" @onclick="CopyLink">
                         <i class="fas fa-copy me-2"></i> @CopyButtonText
                     </button>
-                    <a href="/Admin/Users" class="btn btn-link text-white-50 mt-2">Voltar para a Lista</a>
+                    <a href="/Admin/Users" class="btn btn-link text-subtitle mt-2">Voltar para a Lista</a>
                 </div>
             </div>
         }
@@ -54,32 +54,32 @@
             <DataAnnotationsValidator />
 
             <div class="mb-3">
-                <label class="form-label">Nome Completo</label>
-                <InputText @bind-Value="Model.FullName" class="form-control" placeholder="Ex: Maria Souza" />
+                <label class="form-label text-subtitle">Nome Completo</label>
+                <InputText @bind-Value="Model.FullName" class="form-control theme-input" placeholder="Ex: Maria Souza" />
                 <ValidationMessage For="() => Model.FullName" class="text-danger" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Nome de Exibição (Como aparecerá no sistema)</label>
-                <InputText @bind-Value="Model.DisplayName" class="form-control" placeholder="Ex: Maria" />
+                <label class="form-label text-subtitle">Nome de Exibição (Como aparecerá no sistema)</label>
+                <InputText @bind-Value="Model.DisplayName" class="form-control theme-input" placeholder="Ex: Maria" />
                 <ValidationMessage For="() => Model.DisplayName" class="text-danger" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label">E-mail (Login)</label>
-                <InputText @bind-Value="Model.Email" class="form-control" placeholder="funcionario@suaempresa.com" />
+                <label class="form-label text-subtitle">E-mail (Login)</label>
+                <InputText @bind-Value="Model.Email" class="form-control theme-input" placeholder="funcionario@suaempresa.com" />
                 <ValidationMessage For="() => Model.Email" class="text-danger" />
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Função (O que o usuário faz)</label>
-                    <InputText @bind-Value="Model.Funcao" class="form-control" placeholder="Ex: Vendedor" />
+                    <label class="form-label text-subtitle">Função (O que o usuário faz)</label>
+                    <InputText @bind-Value="Model.Funcao" class="form-control theme-input" placeholder="Ex: Vendedor" />
                     <ValidationMessage For="() => Model.Funcao" class="text-danger" />
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Nível de Acesso</label>
-                    <InputSelect @bind-Value="Model.NivelAcesso" class="form-select">
+                    <label class="form-label text-subtitle">Nível de Acesso</label>
+                    <InputSelect @bind-Value="Model.NivelAcesso" class="form-select theme-input">
                         <option value="Consulta">Consulta (Apenas leitura)</option>
                         <option value="Operacional">Operacional (Movimentações)</option>
                         <option value="Total">Total (Gestor)</option>
@@ -88,8 +88,8 @@
             </div>
 
             <div class="mb-4">
-                <label class="form-label">Hierarquia de Gestão</label>
-                <InputSelect @bind-Value="Model.Role" class="form-select">
+                <label class="form-label text-subtitle">Hierarquia de Gestão</label>
+                <InputSelect @bind-Value="Model.Role" class="form-select theme-input">
                     <option value="User">Usuário Comum</option>
                     <option value="Admin">Administrador (Gerencia outros usuários)</option>
                 </InputSelect>
@@ -139,7 +139,18 @@
     private bool InviteLinkGenerated = false;
     private string InviteLink = "";
     private string CopyButtonText = "Copiar Link";
+    private bool IsDarkMode = true;
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var theme = await JSRuntime.InvokeAsync<string>("getTheme");
+            IsDarkMode = theme == "dark";
+            StateHasChanged();
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -284,36 +295,16 @@
 }
 
 <style>
-    .user-create-container { display: flex; justify-content: center; padding: 50px 20px; min-height: 100vh; background: radial-gradient(circle at top right, #1e293b, #0f172a); }
-    .user-create-card { 
-        background: rgba(30, 41, 59, 0.6); 
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 45px; 
-        border-radius: 28px; 
-        width: 100%; 
-        max-width: 600px;
-        color: white;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-    }
-    .form-control, .form-select {
-        background: rgba(15, 23, 42, 0.8);
-        border: 1px solid rgba(148, 163, 184, 0.3);
-        color: white;
-        padding: 12px;
-        border-radius: 12px;
-    }
-    .form-control:focus, .form-select:focus {
-        background: #0f172a;
-        border-color: #38bdf8;
-        color: white;
-        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
-        outline: none;
-    }
-    .text-accent { color: #38bdf8; }
+    .user-create-container { display: flex; justify-content: center; padding: 50px 20px; min-height: 100vh; }
+    
     .btn-lg { border-radius: 12px; font-weight: 700; transition: all 0.3s; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.3); }
+    
+    .btn-primary {
+        background: var(--accent);
+        color: #0f172a;
+        font-weight: 700;
+        border: none;
+    }
+    .btn-primary:hover { transform: translateY(-2px); background: #0ea5e9; }
     .btn-success { background: #10b981; border: none; }
-    .btn-success:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3); }
 </style>

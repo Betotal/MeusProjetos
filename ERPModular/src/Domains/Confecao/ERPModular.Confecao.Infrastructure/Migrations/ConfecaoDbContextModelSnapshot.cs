@@ -17,13 +17,12 @@ namespace ERPModular.Confecao.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("domain_confecao")
                 .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ERPModular.Confecao.Domain.Entities.Produto", b =>
+            modelBuilder.Entity("ERPModular.Confecao.Domain.Entities.HistoricoPreco", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,20 +35,150 @@ namespace ERPModular.Confecao.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("DataAlteracao")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DomainId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("EmpresaId")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Motivo")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<decimal>("PrecoAntigo")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PrecoNovo")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TenantId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("VariacaoId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VariacaoId");
+
+                    b.ToTable("HistoricoPrecos", (string)null);
+                });
+
+            modelBuilder.Entity("ERPModular.Confecao.Domain.Entities.MovimentacaoEstoque", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DataMovimentacao")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DomainId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EmpresaId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Motivo")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<decimal>("Quantidade")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<string>("ReferenciaDocumento")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("TenantId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("VariacaoId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VariacaoId");
+
+                    b.ToTable("MovimentacoesEstoque", (string)null);
+                });
+
+            modelBuilder.Entity("ERPModular.Confecao.Domain.Entities.Produto", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Categoria")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("CodigoReferencia")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("DomainId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EmpresaId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FotoUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("Referencia")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -63,7 +192,100 @@ namespace ERPModular.Confecao.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Produtos", "domain_confecao");
+                    b.ToTable("Produtos", (string)null);
+                });
+
+            modelBuilder.Entity("ERPModular.Confecao.Domain.Entities.ProdutoVariacao", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("DomainId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EmpresaId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("EstoqueMinimo")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("PrecoVenda")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("ProdutoId")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("SaldoAtual")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<string>("Tamanho")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("TenantId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("ProdutoVariacoes", (string)null);
+                });
+
+            modelBuilder.Entity("ERPModular.Confecao.Domain.Entities.HistoricoPreco", b =>
+                {
+                    b.HasOne("ERPModular.Confecao.Domain.Entities.ProdutoVariacao", "Variacao")
+                        .WithMany()
+                        .HasForeignKey("VariacaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Variacao");
+                });
+
+            modelBuilder.Entity("ERPModular.Confecao.Domain.Entities.MovimentacaoEstoque", b =>
+                {
+                    b.HasOne("ERPModular.Confecao.Domain.Entities.ProdutoVariacao", "Variacao")
+                        .WithMany()
+                        .HasForeignKey("VariacaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Variacao");
+                });
+
+            modelBuilder.Entity("ERPModular.Confecao.Domain.Entities.ProdutoVariacao", b =>
+                {
+                    b.HasOne("ERPModular.Confecao.Domain.Entities.Produto", "Produto")
+                        .WithMany("Variacoes")
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("ERPModular.Confecao.Domain.Entities.Produto", b =>
+                {
+                    b.Navigation("Variacoes");
                 });
 #pragma warning restore 612, 618
         }

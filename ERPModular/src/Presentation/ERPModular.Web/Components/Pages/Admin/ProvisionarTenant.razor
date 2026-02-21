@@ -13,10 +13,10 @@
 @inject IJSRuntime JSRuntime
 
 <div class="provision-container">
-    <div class="provision-card">
-        <div class="header">
-            <h3><i class="bi bi-person-plus-fill me-2"></i>Provisionar Novo Tenant</h3>
-            <p>Cadastre um novo cliente e gere o link de convite.</p>
+    <div class="provision-card theme-card border-0 shadow-lg p-4 p-md-5 rounded-4">
+        <div class="header mb-4 pb-2 border-bottom">
+            <h3 class="theme-text-header fw-bold mb-1"><i class="bi bi-person-plus-fill me-2"></i>Provisionar Novo Tenant</h3>
+            <p class="text-subtitle">Cadastre um novo cliente e gere o link de convite.</p>
         </div>
 
         @if (InviteLinkGenerated)
@@ -26,22 +26,22 @@
                     <div class="success-icon mb-3">
                         <i class="fas fa-check-circle fa-4x text-success"></i>
                     </div>
-                    <h4 class="text-white">Tenant Provisionado!</h4>
-                    <p class="text-white-50">Compartilhe o link de onboarding com <strong>@Model.NomeSugerido</strong></p>
+                    <h4 class="theme-text fw-bold">Tenant Provisionado!</h4>
+                    <p class="text-subtitle">Compartilhe o link de onboarding com <strong>@Model.NomeSugerido</strong></p>
                 </div>
 
-                <div class="link-box p-3 rounded-4 bg-black bg-opacity-50 border border-secondary mb-4">
-                    <code class="text-info small text-break">@InviteLink</code>
+                <div class="link-box p-3 rounded-4 bg-primary bg-opacity-10 border border-info border-opacity-25 mb-4">
+                    <code class="text-accent small text-break">@InviteLink</code>
                 </div>
 
                 <div class="d-grid gap-3">
-                    <button class="btn btn-success btn-lg py-3 rounded-4" @onclick="SendWhatsApp">
+                    <button class="btn btn-success btn-lg py-3 rounded-4 shadow-sm" @onclick="SendWhatsApp">
                         <i class="fab fa-whatsapp me-2"></i> Enviar via WhatsApp
                     </button>
-                    <button class="btn btn-outline-light btn-lg py-3 rounded-4" @onclick="CopyLink">
+                    <button class="btn @(IsDarkMode ? "btn-outline-light" : "btn-outline-secondary") btn-lg py-3 rounded-4" @onclick="CopyLink">
                         <i class="fas fa-copy me-2"></i> @CopyButtonText
                     </button>
-                    <button class="btn btn-link text-white-50 mt-2" @onclick="() => InviteLinkGenerated = false">Provisionar Outro</button>
+                    <button class="btn btn-link text-subtitle mt-2" @onclick="() => InviteLinkGenerated = false">Provisionar Outro</button>
                 </div>
             </div>
         }
@@ -52,32 +52,32 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">E-mail do Cliente (Login)</label>
-                        <InputText @bind-Value="Model.Email" class="form-control" placeholder="cliente@email.com" />
+                        <label class="form-label text-subtitle">E-mail do Cliente (Login)</label>
+                        <InputText @bind-Value="Model.Email" class="form-control theme-input" placeholder="cliente@email.com" />
                         <ValidationMessage For="() => Model.Email" class="text-danger" />
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Nome Sugerido (Admin)</label>
-                        <InputText @bind-Value="Model.NomeSugerido" class="form-control" placeholder="Ex: João da Silva" />
+                        <label class="form-label text-subtitle">Nome Sugerido (Admin)</label>
+                        <InputText @bind-Value="Model.NomeSugerido" class="form-control theme-input" placeholder="Ex: João da Silva" />
                         <ValidationMessage For="() => Model.NomeSugerido" class="text-danger" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Papel do Convidado</label>
+                        <label class="form-label text-subtitle">Papel do Convidado</label>
                         <div class="d-flex gap-4">
                             <div class="form-check custom-radio">
                                 <input class="form-check-input" type="radio" name="papel" id="roleOwner" value="Owner" 
                                        checked="@(Model.Papel == "Owner")" @onchange='() => Model.Papel = "Owner"'>
-                                <label class="form-check-label" for="roleOwner">
+                                <label class="form-check-label theme-text" for="roleOwner">
                                     <i class="bi bi-star-fill text-warning me-1"></i> Dono
                                 </label>
                             </div>
                             <div class="form-check custom-radio">
                                 <input class="form-check-input" type="radio" name="papel" id="roleAdmin" value="Admin"
                                        checked="@(Model.Papel == "Admin")" @onchange='() => Model.Papel = "Admin"'>
-                                <label class="form-check-label" for="roleAdmin">
+                                <label class="form-check-label theme-text" for="roleAdmin">
                                     <i class="bi bi-shield-lock-fill text-info me-1"></i> Administrador
                                 </label>
                             </div>
@@ -87,13 +87,13 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Empresa Sugerida</label>
-                        <InputText @bind-Value="Model.EmpresaSugerida" class="form-control" placeholder="Ex: Confecção Estrela" />
+                        <label class="form-label text-subtitle">Empresa Sugerida</label>
+                        <InputText @bind-Value="Model.EmpresaSugerida" class="form-control theme-input" placeholder="Ex: Confecção Estrela" />
                         <ValidationMessage For="() => Model.EmpresaSugerida" class="text-danger" />
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Segmento (Domínio)</label>
-                        <InputSelect @bind-Value="Model.DomainId" class="form-select">
+                        <label class="form-label text-subtitle">Segmento (Domínio)</label>
+                        <InputSelect @bind-Value="Model.DomainId" class="form-select theme-input">
                             <option value="">Selecione um domínio...</option>
                             @foreach (var dom in Dominios)
                             {
@@ -137,6 +137,18 @@
     private string? InviteLink;
     private bool InviteLinkGenerated;
     private string CopyButtonText = "Copiar Link";
+
+    private bool IsDarkMode = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var theme = await JSRuntime.InvokeAsync<string>("getTheme");
+            IsDarkMode = theme == "dark";
+            StateHasChanged();
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -298,32 +310,9 @@
         justify-content: center;
         padding-top: 50px;
     }
-    .provision-card {
-        background: #1e293b;
-        color: white;
-        padding: 40px;
-        border-radius: 16px;
-        width: 100%;
-        max-width: 800px;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-    }
-    .header h3 { color: #38bdf8; font-weight: 700; }
-    .header p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 30px; }
-    .form-label { color: #cbd5e1; font-weight: 500; font-size: 0.85rem; }
-    .form-control, .form-select {
-        background: #0f172a;
-        border: 1px solid #334155;
-        color: white;
-        padding: 12px;
-    }
-    .form-control:focus, .form-select:focus {
-        background: #0f172a;
-        border-color: #38bdf8;
-        color: white;
-        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
-    }
+
     .btn-primary {
-        background: #38bdf8;
+        background: var(--accent);
         color: #0f172a;
         font-weight: 700;
         border: none;
@@ -335,15 +324,11 @@
     }
     .alert { font-size: 0.9rem; margin-top: 20px; }
 
-    .custom-radio { cursor: pointer; padding: 10px 15px; border-radius: 8px; background: rgba(15, 23, 42, 0.5); border: 1px solid #334155; transition: all 0.2s; }
-    .custom-radio:hover { background: rgba(56, 189, 248, 0.1); border-color: #38bdf8; }
-    .form-check-input:checked + .form-check-label { color: #38bdf8; }
+    .custom-radio { cursor: pointer; padding: 10px 15px; border-radius: 8px; background: var(--bg-primary); border: 1px solid var(--border-color); transition: all 0.2s; }
+    .custom-radio:hover { background: rgba(56, 189, 248, 0.1); border-color: var(--accent); }
+    .form-check-input:checked + .form-check-label { color: var(--accent); }
 
     /* Estilos do Sucesso (Premium) */
     .invite-success { padding: 20px 0; }
     .success-icon { color: #10b981; filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.4)); }
-    .link-box { background: #0f172a !important; border: 1px dashed #334155 !important; }
-    .btn-success { background: #10b981; border: none; font-weight: 700; color: white; }
-    .btn-success:hover { background: #059669; transform: translateY(-2px); }
-    .btn-outline-light:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
 </style>

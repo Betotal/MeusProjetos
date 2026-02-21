@@ -32,6 +32,7 @@ public class AuditInterceptor : SaveChangesInterceptor
             {
                 entry.Entity.CreatedAt = DateTime.UtcNow;
                 entry.Entity.CreatedBy = context.UserId;
+                entry.Entity.DomainId = context.DomainId;
                 entry.Entity.TenantId = context.TenantId;
                 entry.Entity.EmpresaId = context.EmpresaId;
             }
